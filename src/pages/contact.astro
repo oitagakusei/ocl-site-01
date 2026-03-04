@@ -17,6 +17,7 @@ import BreadCrumb from "../components/common/Breadcrumb.astro";
       <HeadingLv1
         headingTitle="お問い合わせ"
         headingTitleEn="Contact"
+        headingClass="l-container-s"
       />
     </div><!-- /.contact-heading-lv1 -->
 
@@ -53,6 +54,10 @@ import BreadCrumb from "../components/common/Breadcrumb.astro";
 
   .contact-content {
     margin-block-start: 40px;
+
+    @include mq() {
+      margin-block-start: 100px;
+    }
   }
 
 </style>

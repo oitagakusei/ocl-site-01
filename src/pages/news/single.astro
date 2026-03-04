@@ -13,7 +13,7 @@ import CtaArea from "../../components/common/CtaArea.astro";
   <div class="single">
     <main class="single-main">
       <article class="single-article">
-        <div class="l-container">
+        <div class="l-container-s">
           <div class="single-head">
             <h1 class="single-title c-heading-md">記事タイトル記事タイトル記事タイトルル記事タイトル</h1>
             <div class="single-meta">
@@ -22,14 +22,14 @@ import CtaArea from "../../components/common/CtaArea.astro";
             </div><!-- /.single-meta -->
           </div><!-- /.single-head -->
           <div class="single-thumbnail">
-            <img src="../../../public/assets/images/global/pic-news-thumbnail01@2x.jpg" alt="" loading="lazy" decoding="async" width="350" height="230">
+            <img src="../../../public/assets/images/global/pic-news-single-thumbnail@2x.webp" alt="" loading="lazy" decoding="async" width="800" height="526">
           </div><!-- /.single-thumbnail -->
 
           <div class="single-content">
             <h2>見出しレベル2</h2>
             <p>お知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキスト<u>お知らせテキスト</u>お知らせテキストお知らせテキスト<strong>お知らせテキスト</strong></p>
             <p>お知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキスト<em>お知らせテキスト</em>お知らせテキストお知らせテキストお知らせテキスト<a href="#">お知らせテキスト</a></p>
-            <img src="../../../public/assets/images/global/pic-news-thumbnail01@2x.jpg" alt="">
+            <img src="../../../public/assets/images/global/pic-news-thumbnail01@2x.webp" alt="">
             <h3>見出しレベル3</h3>
             <p>お知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキスト</p>
             <ul>
@@ -63,10 +63,10 @@ import CtaArea from "../../components/common/CtaArea.astro";
             <h3>見出しレベル3見出しレベル3見出しレベル3見出しレベル3</h3>
             <p>お知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキスト</p>
             <p>お知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキストお知らせテキスト</p>
-            <img src="../../../public/assets/images/global/pic-news-thumbnail01@2x.jpg" alt="">
-            <img src="../../../public/assets/images/global/pic-news-thumbnail01@2x.jpg" alt="">
+            <img src="../../../public/assets/images/global/pic-news-thumbnail01@2x.webp" alt="">
+            <img src="../../../public/assets/images/global/pic-news-thumbnail01@2x.webp" alt="">
           </div><!-- /.single-content -->
-        </div><!-- /.l-container -->
+        </div><!-- /.l-container-s -->
       </article>
 
       <div class="single-btn">
@@ -93,14 +93,6 @@ import CtaArea from "../../components/common/CtaArea.astro";
   .single {
     padding-block-start: 40px;
     margin-block-start: 60px;
-  }
-
-  .single-main {
-
-  }
-
-  .single-article {
-
   }
 
   .single-head {
@@ -134,6 +126,12 @@ import CtaArea from "../../components/common/CtaArea.astro";
 
   .single-thumbnail {
     margin-block-start: 40px;
+
+    img {
+      height: auto;
+      aspect-ratio: 350 / 230;
+      object-fit: cover;
+    }
   }
 
   .single-content {
@@ -145,5 +143,40 @@ import CtaArea from "../../components/common/CtaArea.astro";
     text-align: center;
   }
 
+  @include mq() {
+    .single {
+      padding-block-start: 100px;
+      margin-block-start: 80px;
+    }
 
+    .single-head {
+      // gap: 16px;
+    }
+
+    .single-meta {
+      gap: 16px;
+    }
+
+    .single-category {
+      padding-block: 6px;
+      padding-inline: 12px;
+      font-size: 14px;
+    }
+
+    .single-date {
+      font-size: 16px;
+    }
+
+    .single-thumbnail {
+      margin-block-start: 48px;
+    }
+
+    .single-content {
+      margin-block-start: 64px;
+    }
+
+    .single-btn {
+      margin-block-start: 100px;
+    }
+  }
 </style>

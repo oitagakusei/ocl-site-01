@@ -10,10 +10,9 @@ import BreadCrumb from "../components/common/Breadcrumb.astro";
   description="習志野市のみもみ幼稚園に関する、よくある質問をカテゴリー別にご紹介しています。預かり保育や給食から、子どもの成長に関することまで、安心してご利用いただけるよう丁寧にお答えしています。"
 >
   <div class="not-found">
-    <div class="l-container">
-      <h1 class="not-found-heading-lv1">404 Not Found</h1>
-
-      <main class="not-found-main">
+    <main class="not-found-main">
+      <div class="l-container-s">
+        <h1 class="not-found-heading-lv1">404 Not Found</h1>
         <div class="not-found-content">
           <div class="not-found-description">
             <p class="not-found-text">お探しのページは見つかりませんでした。</p>
@@ -37,11 +36,11 @@ import BreadCrumb from "../components/common/Breadcrumb.astro";
             </li>
           </ul>
         </div><!-- /.not-found-content -->
+      </div><!-- /.l-container-s -->
 
-        <!-- breadcrumb -->
-        <BreadCrumb />
-      </main>
-    </div><!-- /.l-container -->
+      <!-- breadcrumb -->
+      <BreadCrumb />
+    </main>
   </div><!-- /.not-found -->
 </Layout>
 
@@ -59,14 +58,6 @@ import BreadCrumb from "../components/common/Breadcrumb.astro";
     font-size: 28px;
     font-weight: 700;
     text-align: center;
-  }
-
-  .not-found-main {
-
-  }
-
-  .not-found-content {
-
   }
 
   .not-found-description {
@@ -101,5 +92,25 @@ import BreadCrumb from "../components/common/Breadcrumb.astro";
     }
   }
 
+  @include mq() {
+    .not-found {
+      padding-block-start: 100px;
+      margin-block-start: 80px;
+    }
 
+    .not-found-heading-lv1 {
+      font-size: 32px;
+    }
+
+    .not-found-description {
+      margin-block-start: 64px;
+    }
+
+    .not-found-text {
+      text-align: center;    }
+
+    .not-found-btn {
+      margin-block-start: 64px;
+    }
+  }
 </style>

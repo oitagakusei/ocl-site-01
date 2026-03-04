@@ -15,12 +15,13 @@ import CtaArea from "../components/common/CtaArea.astro";
       <HeadingLv1
         headingTitle="プライバシーポリシー"
         headingTitleEn="Privacy Policy"
+        headingClass="l-container-s"
       />
     </div><!-- /.privacy-heading-lv1 -->
 
     <main class="privacy-main">
       <div class="privacy-content">
-        <div class="l-container">
+        <div class="l-container-s">
           <p class="privacy-lead">Oita Campus Link（以下、「当法人」といいます。）は、当法人が運営するウェブサイト（以下、「本サイト」といいます。）において取得する個人情報の重要性を認識し、以下のとおりプライバシーポリシーを定め、適切な管理と保護に努めます。</p>
 
           <section class="privacy-section">
@@ -91,7 +92,7 @@ import CtaArea from "../components/common/CtaArea.astro";
             </dl>
             <p class="privacy-signature">Oita Campus Link</p>
           </div><!-- /.privacy-effective-date -->
-        </div><!-- /.l-container -->
+        </div><!-- /.l-container-s -->
       </div><!-- /.privacy-content -->
 
       <!-- breadcrumb -->
@@ -106,25 +107,9 @@ import CtaArea from "../components/common/CtaArea.astro";
 <style lang="scss">
   @use '../styles/breakpoints' as *;
 
-  .privacy {
-
-  }
-
-  .privacy-heading-lv1 {
-
-  }
-
-  .privacy-main {
-
-  }
-
   .privacy-content {
     margin-block-start: 40px;
     text-align: justify;
-  }
-
-  .privacy-lead {
-
   }
 
   .privacy-section {
@@ -134,14 +119,6 @@ import CtaArea from "../components/common/CtaArea.astro";
   .privacy-title {
     border-bottom: 1px solid var(--color-sub-green2);
     margin-block-end: 16px;
-  }
-
-  .privacy-text {
-
-  }
-
-  .privacy-list {
-
   }
 
   .privacy-item,
@@ -182,10 +159,16 @@ import CtaArea from "../components/common/CtaArea.astro";
     }
   }
 
-  .privacy-signature {
+  @include mq() {
+    .privacy-content {
+      margin-block-start: 100px;
+    }
+    .privacy-section {
+      margin-block-start: 40px;
+    }
 
+    .privacy-effective-date {
+      margin-block-start: 40px;
+    }
   }
-
-
-
 </style>

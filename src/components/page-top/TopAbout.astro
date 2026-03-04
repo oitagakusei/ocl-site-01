@@ -40,14 +40,10 @@ import Button from "../common/Button.astro";
   @use '../../styles/breakpoints' as *;
 
   .top-about {
-    background-image: url(../../../public/assets/images/top/bg-top-about@2x.png);
+    background-image: url(../../../public/assets/images/top/bg-top-about@2x.webp);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-  }
-
-  .top-about-title {
-
   }
 
   .top-about-description,
@@ -65,10 +61,7 @@ import Button from "../common/Button.astro";
 
   @include mq() {
     .top-about {
-      // background-image: url(../../../public/assets/images/top/bg-top-about@2x.png);
-      // background-repeat: no-repeat;
-      // background-size: cover;
-      // background-position: center center;
+      background-image: url(../../../public/assets/images/top/bg-top-about@4x.webp);
     }
 
     .top-about-title {
@@ -78,18 +71,9 @@ import Button from "../common/Button.astro";
     .top-about-description {
       max-width: 800px;
     }
-    .top-about-description,
-    .top-about-text {
-      // display: grid;
-      // gap: 16px;
-      // text-align: justify;
-    }
 
     .top-about-btn {
-      // width: fit-content;
       margin-block-start: 80px;
-      // margin-inline: auto;
     }
   }
-
 </style>

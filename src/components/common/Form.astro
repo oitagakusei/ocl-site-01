@@ -1,9 +1,5 @@
 ---
-/**
- * Form.astro
- * - 指摘点の修正（honeypot / radiogroup削除 / checkboxセレクタ修正 / type="submit"明示）
- * - クライアントサイドのバリデーション追加（aria対応のエラーメッセージ）
- */
+
 ---
 
 <form class="c-form" action="" method="post" novalidate>
@@ -146,7 +142,7 @@
         </span>
       </span>
     </label>
-    <p id="privacy-error" class="c-form-error" aria-live="polite"></p>
+    <p id="privacy-error" class="c-form-error c-form-error--privacy" aria-live="polite"></p>
   </div>
 
   <div class="c-form-submit">
@@ -198,7 +194,7 @@
         input: form.querySelector('#privacy'),
         error: form.querySelector('#privacy-error'),
         messages: {
-          valueMissing: '送信するにはプライバシーポリシーへの同意が必要です。',
+          valueMissing: 'プライバシーポリシーに同意してください。',
         },
       },
     };
@@ -331,7 +327,7 @@
     font-size: 12px;
   }
 
-  /* honeypot */
+  // honeypot
   .c-form-honeypot {
     position: absolute;
     left: -9999px;
@@ -375,15 +371,19 @@
     overflow: auto;
   }
 
-  /* エラーメッセージ */
+  // エラーメッセージ
   .c-form-error {
     margin-top: 4px;
     font-size: 14px;
     line-height: 1.6;
     color: #c95858;
-    min-height: 24px; /* 文字がない時のガタつき防止 */
-    // letter-spacing: normal;
+    min-height: 24px; // 文字がない時のガタつき防止
     text-align: justify;
+
+    &--privacy {
+      width: fit-content;
+      margin-inline: auto;
+    }
   }
 
 
@@ -490,7 +490,6 @@
     }
   }
 
-  /* checked（修正：親側で確実に当てる） */
   .c-form-checkbox input:checked + .c-form-checkbox-text::after {
     content: '';
     position: absolute;
@@ -505,12 +504,11 @@
     margin-block: auto;
   }
 
-  /* focus（修正：確実に当てる） */
   .c-form-checkbox input:focus-visible + .c-form-checkbox-text {
     background: linear-gradient(transparent 90%, rgba(33, 150, 243, 0.3) 90%);
   }
 
-  /* invalid（checkbox） */
+  // invalid（checkbox）
   .c-form-checkbox input[aria-invalid='true'] + .c-form-checkbox-text::before {
     border-color: #c95858;
   }

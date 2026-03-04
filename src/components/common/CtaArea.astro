@@ -25,11 +25,15 @@ import Button from "./Button.astro";
 
   .c-cta-area {
     padding-block: 208px 80px;
-    background-image: url(../../../public/assets/images/global/bg-cta-area@2x.png);
+    background-image: url(../../../public/assets/images/global/bg-cta-area@2x.webp);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     position: relative;
+
+    @include mq() {
+      background-image: url(../../../public/assets/images/global/bg-cta-area@4x.webp);
+    }
   }
 
   .c-cta-area-head {

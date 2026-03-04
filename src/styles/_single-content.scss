@@ -5,9 +5,6 @@
   text-align: justify;
   line-height: 1.85;
 
-  @include mq() {
-  }
-
   h2 {
     padding-block: 8px;
     padding-inline: 16px;
@@ -23,12 +20,12 @@
     }
 
     @include mq() {
-      // padding: 5px 20px;
-      // margin: 40px 0 32px;
-      // font-size: 20px;
+      padding-block: 10px;
+      padding-inline: 24px;
+      font-size: 24px;
 
       &:not(:first-of-type) {
-        margin-block-start: 48px;
+        margin-block-start: 56px;
       }
     }
   }
@@ -43,42 +40,33 @@
     line-height: 1.5;
 
     @include mq() {
-      // margin: 32px 0 24px;
+      margin-block-start: 40px;
+      font-size: 20px;
     }
   }
 
   p {
     margin-block: 24px;
+  }
 
+  p + p {
     @include mq() {
-      // margin: 24px 0 32px;
+      margin-block: 24px;
     }
   }
 
   img + p {
     margin-block-start: 24px;
-
-    @include mq() {
-      // margin-top: 32px;
-    }
   }
 
   img {
     &:last-child {
       margin-block-end: 24px;
-
-      @include mq() {
-        // margin-bottom: 32px;
-      }
     }
   }
 
   img + img {
     margin-block-start: 24px;
-
-    @include mq() {
-      // margin-top: 32px;
-    }
   }
 
   ul,
