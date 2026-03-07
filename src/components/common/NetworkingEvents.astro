@@ -1,78 +1,113 @@
 ---
 import Button from "./Button.astro";
+import { getNetworkingEvents } from "../../library/microcms";
+import { appendImageFormat } from "../../utils/image";
+import { formatJapaneseDate } from "../../utils/date";
+import { nl2br } from "../../utils/text";
+
+const NO_IMAGE_SRC = "/assets/images/global/pic-news-noimage@2x.webp";
+
+const response = await getNetworkingEvents({
+  fields: [
+    "id",
+    "eventDate",
+    "titleText",
+    "thumbnail",
+    "thumbnailAlt",
+    "text",
+    "newsId",
+    "sortOrder",
+  ],
+  limit: 6,
+  orders: "sortOrder,-eventDate",
+});
+
+const events = response.contents;
 ---
 
-<div id="slider2" class="splide c-activity-reports-splide" role="group" aria-labelledby="networking-events-carousel-heading">
+<div
+  id="slider2"
+  class="splide c-activity-reports-splide"
+  role="group"
+  aria-labelledby="networking-events-carousel-heading"
+>
   <div class="splide__track c-activity-reports-splide-track">
     <ul class="splide__list c-activity-reports-list">
-      <li class="splide__slide c-activity-reports-item">
-        <h4 class="c-activity-reports-title">
-          <span class="c-activity-reports-title-date">2025年1月1日</span>
-          <span class="c-activity-reports-title-text">大分交流会・NPO法人設立記念会</span>
-        </h4>
-        <div class="c-activity-reports-thumbnail">
-          <img src="../../../public/assets/images/activities/pic-activities-overview-02@2x.webp" alt="" loading="lazy" decoding="async" width="310" height="200">
-        </div><!-- /.c-activity-reports-thumbnail -->
-        <p class="c-activity-reports-text">約50名の学生および社会人を招き、交流会を開催しました。<br>本団体のNPO法人化についてもご報告し、多くの方に今後の活動への期待を寄せていただきました。</p>
-        <div class="c-activity-reports-btn">
-          <Button
-            buttonClass="c-btn"
-            buttonUrl="#"
-            buttonText="詳しく見る"
-            buttonAriaLabel="レポートの詳細を見る"
-          />
-        </div><!-- /.c-activity-reports-btn -->
-      </li>
-      <li class="splide__slide c-activity-reports-item">
-        <h4 class="c-activity-reports-title">
-          <span class="c-activity-reports-title-date">2024年1月1日</span>
-          <span class="c-activity-reports-title-text">大分県知事懇親会</span>
-        </h4>
-        <div class="c-activity-reports-thumbnail">
-          <img src="../../../public/assets/images/global/pic-news-noimage@2x.webp" alt="" loading="lazy" decoding="async" width="318" height="208">
-        </div><!-- /.c-activity-reports-thumbnail -->
-        <p class="c-activity-reports-text">2024年1月1日。大分県知事をお招きし、学生40名を対象に、大分県の現状や日本の社会情勢についてお話しいただきました。<br>質疑応答にも応じていただき、学生にとって非常に貴重な学びの機会となりました。</p>
-        <div class="c-activity-reports-btn">
-          <Button
-            buttonClass="c-btn"
-            buttonUrl="#"
-            buttonText="詳しく見る"
-            buttonAriaLabel="レポートの詳細を見る"
-          />
-        </div><!-- /.c-activity-reports-btn -->
-      </li>
-      <li class="splide__slide c-activity-reports-item">
-        <h4 class="c-activity-reports-title">
-          <span class="c-activity-reports-title-date">2025年1月1日</span>
-          <span class="c-activity-reports-title-text">大分交流会・NPO法人設立記念会</span>
-        </h4>
-        <div class="c-activity-reports-thumbnail">
-          <img src="../../../public/assets/images/activities/pic-activities-overview-01@2x.webp" alt="" loading="lazy" decoding="async" width="310" height="200">
-        </div><!-- /.c-activity-reports-thumbnail -->
-        <p class="c-activity-reports-text">約50名の学生および社会人を招き、交流会を開催しました。<br>本団体のNPO法人化についてもご報告し、多くの方に今後の活動への期待を寄せていただきました。</p>
-        <div class="c-activity-reports-btn">
-          <Button
-            buttonClass="c-btn"
-            buttonUrl="#"
-            buttonText="詳しく見る"
-            buttonAriaLabel="レポートの詳細を見る"
-          />
-        </div><!-- /.c-activity-reports-btn -->
-      </li>
+      {
+        events.length > 0 ? (
+          events.map((item) => {
+            const thumbnailSrc = item.thumbnail?.url
+              ? appendImageFormat(item.thumbnail.url, "webp")
+              : NO_IMAGE_SRC;
+
+            const thumbnailAlt =
+              (item.thumbnailAlt && item.thumbnailAlt.trim()) ||
+              "交流会のサムネイル画像";
+
+            const detailUrl = item.newsId
+              ? `/news/${item.newsId}`
+              : "/news";
+
+            return (
+              <li class="splide__slide c-activity-reports-item">
+                <h4 class="c-activity-reports-title">
+                  <span class="c-activity-reports-title-date">
+                    {formatJapaneseDate(item.eventDate)}
+                  </span>
+                  <span class="c-activity-reports-title-text">
+                    {item.titleText}
+                  </span>
+                </h4>
+
+                <div class="c-activity-reports-thumbnail">
+                  <img
+                    src={thumbnailSrc}
+                    alt={thumbnailAlt}
+                    loading="lazy"
+                    decoding="async"
+                    width="310"
+                    height="200"
+                  />
+                </div>
+
+                <div
+                  class="c-activity-reports-text"
+                  set:html={nl2br(item.text)}
+                ></div>
+
+                <div class="c-activity-reports-btn">
+                  <Button
+                    buttonClass="c-btn"
+                    buttonUrl={detailUrl}
+                    buttonText="詳しく見る"
+                    buttonAriaLabel={`${item.titleText}の詳細を見る`}
+                  />
+                </div>
+              </li>
+            );
+          })
+        ) : (
+          <li class="splide__slide c-activity-reports-item">
+            <p class="c-activity-reports-text">
+              現在、表示できる交流会情報がありません。
+            </p>
+          </li>
+        )
+      }
     </ul>
-  </div><!-- /.splide__track.c-activity-reports-splide-track -->
-</div><!-- /.splide -->
+  </div>
+</div>
 
 <script>
-  var splide = new Splide( '#slider2', {
+  const splide = new Splide("#slider2", {
     perPage: 2,
     focus: 0,
     omitEnd: true,
-    gap : '24px',
+    gap: "24px",
     breakpoints: {
       767: {
         perPage: 1,
-        gap : '24px',
+        gap: "24px",
       },
     },
     classes: {
@@ -80,9 +115,10 @@ import Button from "./Button.astro";
       page: "splide__pagination__page c-activity-reports-page",
     },
     arrows: false,
-  } );
+  });
 
   splide.mount();
+
 </script>
 
 <style is:global lang="scss">

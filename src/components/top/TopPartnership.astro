@@ -69,7 +69,7 @@ import Button from "../common/Button.astro";
 
   .top-partnership-description {
     display: grid;
-    gap: 8px;
+    gap: 16px;
     margin-block-start: 32px;
   }
 
@@ -79,25 +79,23 @@ import Button from "../common/Button.astro";
 
   .top-partnership-list {
     display: grid;
-    gap: 8px;
+    gap: 4px;
   }
 
   .top-partnership-item {
-    display: flex;
-    gap: 8px;
+    padding-inline-start: 1.1em;
+    font-weight: 500;
+    position: relative;
 
     &::before {
       content: "";
-      width: 20px;
-      height: 19px;
-      margin-block-start: .2em;
-      background-image: url(../../../public/assets/images/global/icon-check.svg);
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center center;
-      // position: absolute;
-      // top: 0;
-      // left: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: currentColor;
+      position: absolute;
+      top: .7em;
+      left: .4em;
     }
   }
 

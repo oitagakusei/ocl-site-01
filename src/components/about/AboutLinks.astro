@@ -15,7 +15,7 @@
         <h3 class="about-links-title-lv3">年次報告</h3>
         <ul class="about-links-annual-reports-list">
           <li class="about-links-annual-reports-item">
-            <span class="about-links-link">※2026年度の年次報告（事業・会計）を、事業年度終了後3か月以内に公開する予定です。</span>
+            <span class="about-links-link about-links-link--note">※2026年度の年次報告（事業・会計）を、事業年度終了後3か月以内に公開する予定です。</span>
           </li>
           <li class="about-links-annual-reports-item">
             <a href="#" class="about-links-link">2026年度 年次報告（事業・会計）PDFを見る</a>
@@ -73,9 +73,17 @@
     text-decoration: underline;
     transition: color .3s;
 
+    &--note {
+      text-decoration: none;
+    }
+
     @media (any-hover: hover) {
       &:hover {
         color: #0075ff;
+      }
+
+      &--note:hover {
+        color: var(--color-base);
       }
     }
   }
@@ -89,12 +97,6 @@
   }
 
   .about-links-annual-reports-item {
-    &:nth-child(1) {
-      .about-links-link {
-        text-decoration: none;
-      }
-    }
-
     &:nth-child(2),
     &:nth-child(3) {
       display: none;

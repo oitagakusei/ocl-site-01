@@ -1,0 +1,249 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Button from "../../components/common/Button.astro";
+import BreadCrumb from "../../components/common/Breadcrumb.astro";
+import CtaArea from "../../components/common/CtaArea.astro";
+
+import { formatYmd } from "../../utils/date";
+import { appendImageFormat } from "../../utils/image";
+import { truncateText } from "../../utils/text";
+
+// microCMS呼び出し
+import { getAllNews, getNewsDetail } from "../../library/microcms";
+import type { News } from "../../library/microcms";
+
+// HTMLパーサー用ライブラリ
+// インストールコマンド：npm install node-html-parser
+import { parse } from "node-html-parser";
+
+// サニタイズ処理
+// インストールコマンド：npm install sanitize-html
+import sanitizeHtml from "sanitize-html";
+
+// microCMSでサムネイル未指定時に使う画像
+const NO_IMAGE_SRC = "/assets/images/global/pic-news-noimage@2x.webp";
+
+// 詳細記事ページの全パスを取得（全件対応）
+export async function getStaticPaths() {
+  const response = await getAllNews({
+    fields: ["id"],
+    limit: 100,
+  });
+
+  return response.contents.map((content: News) => ({
+    params: {
+      newsId: content.id,
+    },
+  }));
+}
+
+// 記事の詳細情報を取得
+const { newsId } = Astro.params;
+const news = await getNewsDetail(newsId as string);
+
+// リッチエディタ内の画像URLに画像APIクエリを付与
+function convertImagesToWebP(htmlContent: string) {
+  const root = parse(htmlContent);
+
+  root.querySelectorAll("img").forEach((img) => {
+    const src = img.getAttribute("src");
+
+    if (src && src.includes("microcms-assets.io")) {
+      img.setAttribute("src", appendImageFormat(src, "webp"));
+    }
+  });
+
+  return root.toString();
+}
+
+// 記事本文をサニタイズし、画像をWebPに変換
+const cleanContent = sanitizeHtml(convertImagesToWebP(news.content), {
+  allowedTags: [
+    "b",
+    "i",
+    "em",
+    "strong",
+    "u",
+    "span",
+    "a",
+    "p",
+    "h2",
+    "h3",
+    "ul",
+    "ol",
+    "li",
+    "br",
+    "img",
+  ],
+  allowedAttributes: {
+    "*": ["class"],
+    a: ["href", "target", "rel"],
+    img: ["src", "alt", "width", "height"],
+  },
+  allowedIframeHostnames: ["www.youtube.com"],
+});
+
+// 記事本文をプレーンテキスト化
+const cleanText = sanitizeHtml(news.content, {
+  allowedTags: [],
+  allowedAttributes: {},
+}).trim();
+
+// メタディスクリプション
+const metaDescription = truncateText(cleanText, 150);
+
+// サムネイル画像
+const thumbnailSrc = news.thumbnail?.url
+  ? appendImageFormat(news.thumbnail.url, "webp")
+  : NO_IMAGE_SRC;
+
+// alt：未指定・空白のみなら固定文言
+const thumbnailAlt =
+  (news.thumbnailAlt && news.thumbnailAlt.trim()) ||
+  "お知らせのサムネイル画像";
+---
+
+<Layout
+  title={`お知らせ - ${news.title}｜Oita Campus Link`}
+  ogType="article"
+  description={metaDescription}
+>
+  <div class="single">
+    <main class="single-main">
+      <article class="single-article">
+        <div class="l-container-s">
+          <div class="single-head">
+            <h1 class="single-title c-heading-md">{news.title}</h1>
+
+            <div class="single-meta">
+              <span class="single-category">{news.category}</span>
+              <time datetime={news.publishedAt} class="single-date">
+                {formatYmd(news.publishedAt)}
+              </time>
+            </div>
+          </div>
+
+          <div class="single-thumbnail">
+            <img
+              src={thumbnailSrc}
+              alt={thumbnailAlt}
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="526"
+            />
+          </div>
+
+          <div class="single-content" set:html={cleanContent}></div>
+        </div>
+      </article>
+
+      <div class="single-btn">
+        <Button
+          buttonClass="c-btn"
+          buttonUrl="/news"
+          buttonText="記事一覧へ戻る"
+          buttonAriaLabel="お知らせ記事一覧へ戻る"
+        />
+      </div>
+
+      <BreadCrumb />
+    </main>
+
+    <CtaArea />
+  </div>
+</Layout>
+
+<style lang="scss">
+  @use '../../styles/breakpoints' as *;
+
+  .single {
+    padding-block-start: 40px;
+    margin-block-start: 60px;
+  }
+
+  .single-head {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 16px;
+  }
+
+  .single-title {
+    text-align: justify;
+  }
+
+  .single-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    line-height: 1.5;
+  }
+
+  .single-category {
+    padding-block: 4px;
+    padding-inline: 10px;
+    background-color: var(--color-sub-green2);
+    color: var(--color-white);
+    font-size: 12px;
+  }
+
+  .single-date {
+    font-size: 14px;
+  }
+
+  .single-thumbnail {
+    margin-block-start: 40px;
+
+    img {
+      height: auto;
+      aspect-ratio: 350 / 230;
+      object-fit: cover;
+    }
+  }
+
+  .single-content {
+    margin-block-start: 40px;
+  }
+
+  .single-btn {
+    margin-block-start: 80px;
+    text-align: center;
+  }
+
+  @include mq() {
+    .single {
+      padding-block-start: 100px;
+      margin-block-start: 80px;
+    }
+
+    .single-head {
+      // gap: 16px;
+    }
+
+    .single-meta {
+      gap: 16px;
+    }
+
+    .single-category {
+      padding-block: 6px;
+      padding-inline: 12px;
+      font-size: 14px;
+    }
+
+    .single-date {
+      font-size: 16px;
+    }
+
+    .single-thumbnail {
+      margin-block-start: 48px;
+    }
+
+    .single-content {
+      margin-block-start: 64px;
+    }
+
+    .single-btn {
+      margin-block-start: 100px;
+    }
+  }
+</style>

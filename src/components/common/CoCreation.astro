@@ -1,58 +1,96 @@
 ---
 import Button from "./Button.astro";
+import { getCoCreation } from "../../library/microcms";
+import { appendImageFormat } from "../../utils/image";
+import { formatJapaneseDate } from "../../utils/date";
+import { nl2br } from "../../utils/text";
+
+const NO_IMAGE_SRC = "/assets/images/global/pic-news-noimage@2x.webp";
+
+const response = await getCoCreation({
+  fields: [
+    "id",
+    "publishedAt",
+    "titleText",
+    "thumbnail",
+    "thumbnailAlt",
+    "text",
+    "newsId",
+    "sortOrder",
+  ],
+  limit: 6,
+  orders: "sortOrder,-publishedAt",
+});
+
+const events = response.contents;
 ---
 
-<div id="slider3" class="splide c-activity-reports-splide" role="group" aria-labelledby="co-creation-carousel-heading">
+<div
+  id="slider3"
+  class="splide c-activity-reports-splide"
+  role="group"
+  aria-labelledby="networking-events-carousel-heading"
+>
   <div class="splide__track c-activity-reports-splide-track">
     <ul class="splide__list c-activity-reports-list">
-      <li class="splide__slide c-activity-reports-item">
-        <h4 class="c-activity-reports-title">大分県企業と岩田学園高等学校とのビジネスコンテスト支援</h4>
-        <div class="c-activity-reports-thumbnail">
-          <img src="../../../public/assets/images/activities/pic-activities-overview-01@2x.webp" alt="" loading="lazy" decoding="async" width="310" height="200">
-        </div><!-- /.c-activity-reports-thumbnail -->
-        <p class="c-activity-reports-text">大分県内企業と連携し、ビジネスコンテストに出場する高校生を支援しています。<br>関東に在住する大学生ならではの視点から、企画のブラッシュアップや情報整理などのサポートを行っています。</p>
-        <div class="c-activity-reports-btn">
-          <Button
-            buttonClass="c-btn"
-            buttonUrl="#"
-            buttonText="詳しく見る"
-            buttonAriaLabel="レポートの詳細を見る"
-          />
-        </div><!-- /.c-activity-reports-btn -->
-      </li>
-      <li class="splide__slide c-activity-reports-item">
-        <h4 class="c-activity-reports-title">記事タイトル記事タイトル</h4>
-        <div class="c-activity-reports-thumbnail">
-          <img src="../../../public/assets/images/global/pic-news-noimage@2x.webp" alt="" loading="lazy" decoding="async" width="310" height="200">
-        </div><!-- /.c-activity-reports-thumbnail -->
-        <p class="c-activity-reports-text">記事本文が入ります。記事本文が入ります。記事本文が入ります。記事本文が入ります。<br>記事本文が入ります。記事本文が入ります。記事本文が入ります。記事本文が入ります。</p>
-        <div class="c-activity-reports-btn">
-          <Button
-            buttonClass="c-btn"
-            buttonUrl="#"
-            buttonText="詳しく見る"
-            buttonAriaLabel="レポートの詳細を見る"
-          />
-        </div><!-- /.c-activity-reports-btn -->
-      </li>
-      <li class="splide__slide c-activity-reports-item">
-        <h4 class="c-activity-reports-title">大分県企業と岩田学園高等学校とのビジネスコンテスト支援</h4>
-        <div class="c-activity-reports-thumbnail">
-          <img src="../../../public/assets/images/activities/pic-activities-overview-02@2x.webp" alt="" loading="lazy" decoding="async" width="310" height="200">
-        </div><!-- /.c-activity-reports-thumbnail -->
-        <p class="c-activity-reports-text">大分県内企業と連携し、ビジネスコンテストに出場する高校生を支援しています。<br>関東に在住する大学生ならではの視点から、企画のブラッシュアップや情報整理などのサポートを行っています。</p>
-        <div class="c-activity-reports-btn">
-          <Button
-            buttonClass="c-btn"
-            buttonUrl="#"
-            buttonText="詳しく見る"
-            buttonAriaLabel="レポートの詳細を見る"
-          />
-        </div><!-- /.c-activity-reports-btn -->
-      </li>
+      {
+        events.length > 0 ? (
+          events.map((item) => {
+            const thumbnailSrc = item.thumbnail?.url
+              ? appendImageFormat(item.thumbnail.url, "webp")
+              : NO_IMAGE_SRC;
+
+            const thumbnailAlt =
+              (item.thumbnailAlt && item.thumbnailAlt.trim()) ||
+              "交流会のサムネイル画像";
+
+                          const detailUrl = item.newsId
+              ? `/news/${item.newsId}`
+              : "/news";
+
+            return (
+              <li class="splide__slide c-activity-reports-item">
+                <h4 class="c-activity-reports-title">
+                  <span class="c-activity-reports-title-text">
+                    {item.titleText}
+                  </span>
+                </h4>
+
+                <div class="c-activity-reports-thumbnail">
+                  <img
+                    src={thumbnailSrc}
+                    alt={thumbnailAlt}
+                    loading="lazy"
+                    decoding="async"
+                    width="310"
+                    height="200"
+                  />
+                </div>
+
+                <div class="c-activity-reports-text" set:html={nl2br(item.text)}></div>
+
+                <div class="c-activity-reports-btn">
+                  <Button
+                    buttonClass="c-btn"
+                    buttonUrl={detailUrl}
+                    buttonText="詳しく見る"
+                    buttonAriaLabel={`${item.titleText}の詳細を見る`}
+                  />
+                </div>
+              </li>
+            );
+          })
+        ) : (
+          <li class="splide__slide c-activity-reports-item">
+            <p class="c-activity-reports-text">
+              現在、表示できる交流会情報がありません。
+            </p>
+          </li>
+        )
+      }
     </ul>
-  </div><!-- /.splide__track.c-activity-reports-splide-track -->
-</div><!-- /.splide -->
+  </div>
+</div>
 
 <script>
   var splide = new Splide( '#slider3', {

@@ -1,5 +1,28 @@
 ---
 import Button from "../common/Button.astro";
+
+import { getNews } from "../../library/microcms";
+import { appendImageFormat } from "../../utils/image";
+import { formatYmd } from "../../utils/date";
+import { truncateText } from "../../utils/text";
+
+const baseNoImageSrc = "/assets/images/global/pic-news-noimage@2x.webp";
+
+// 最新3件取得
+const response = await getNews({
+  fields: [
+    "id",
+    "title",
+    "thumbnail",
+    "thumbnailAlt",
+    "category",
+    "publishedAt",
+  ],
+  limit: 3,
+  orders: "-publishedAt",
+});
+
+const posts = response.contents;
 ---
 
 <section class="top-news">
@@ -9,41 +32,56 @@ import Button from "../common/Button.astro";
         <div class="c-title">
           <h2 class="c-title-ja">お知らせ</h2>
           <span class="c-title-en" aria-hidden="true">News</span>
-        </div><!-- /.c-title -->
-      </div><!-- /.top-news-title -->
+        </div>
+      </div>
 
       <div class="l-section-body">
         <div class="top-news-list">
-          <a href="#" class="c-news-card">
-            <div class="c-news-card-thumbnail">
-              <img src="../../../public/assets/images/global/pic-news-thumbnail01@2x.webp" alt="" loading="lazy" decoding="async" width="318" height="208">
-            </div><!-- /.c-news-card-thumbnail -->
-            <div class="c-news-card-meta">
-              <span class="c-news-card-category">対外活動</span>
-              <time datetime="2023-03-01" class="c-news-card-date">2023.03.01</time>
-            </div><!-- /.c-news-card-meta -->
-            <h3 class="c-news-card-title c-heading-sm">記事タイトル記事タイトル</h3>
-          </a>
-          <a href="#" class="c-news-card">
-            <div class="c-news-card-thumbnail">
-              <img src="../../../public/assets/images/global/pic-news-noimage@2x.webp" alt="" loading="lazy" decoding="async" width="318" height="208">
-            </div><!-- /.c-news-card-thumbnail -->
-            <div class="c-news-card-meta">
-              <span class="c-news-card-category">お知らせ</span>
-              <time datetime="2023-03-01" class="c-news-card-date">2023.03.01</time>
-            </div><!-- /.c-news-card-meta -->
-            <h3 class="c-news-card-title c-heading-sm">記事タイトル記事タイトル記事タイトル</h3>
-          </a>
-          <a href="#" class="c-news-card">
-            <div class="c-news-card-thumbnail">
-              <img src="../../../public/assets/images/global/pic-news-thumbnail01@2x.webp" alt="" loading="lazy" decoding="async" width="318" height="208">
-            </div><!-- /.c-news-card-thumbnail -->
-            <div class="c-news-card-meta">
-              <span class="c-news-card-category">活動報告</span>
-              <time datetime="2023-03-01" class="c-news-card-date">2023.03.01</time>
-            </div><!-- /.c-news-card-meta -->
-            <h3 class="c-news-card-title c-heading-sm">記事タイトル記事タイトル記事タイトル</h3>
-          </a>
+          {posts.length > 0 ? (
+              posts.map((item) => {
+                const thumbSrc = item.thumbnail?.url
+                  ? `${item.thumbnail.url}${item.thumbnail.url.includes("?") ? "&" : "?"}fm=webp`
+                  : baseNoImageSrc;
+
+                const altText =
+                  (item.thumbnailAlt && item.thumbnailAlt.trim()) ||
+                  "お知らせのサムネイル画像";
+
+                const displayDate = formatYmd(item.publishedAt);
+
+                return (
+                  <a
+                    href={`/news/${item.id}`}
+                    class="c-news-card"
+                    aria-label={`お知らせ: ${item.title}`}
+                  >
+                    <div class="c-news-card-thumbnail">
+                      <img
+                        src={thumbSrc}
+                        alt={altText}
+                        loading="lazy"
+                        decoding="async"
+                        width="318"
+                        height="208"
+                      />
+                    </div>
+
+                    <div class="c-news-card-meta">
+                      <span class="c-news-card-category">{item.category}</span>
+                      <time datetime={item.publishedAt} class="c-news-card-date">
+                        {displayDate}
+                      </time>
+                    </div>
+
+                    <h3 class="c-news-card-title c-heading-sm">
+                      {truncateText(item.title, 60)}
+                    </h3>
+                  </a>
+                );
+              })
+            ) : (
+              <p class="archive-news-empty">現在、表示できる記事がありません。</p>
+            )}
         </div>
 
         <div class="top-news-btn">
@@ -53,12 +91,11 @@ import Button from "../common/Button.astro";
             buttonText="お知らせ一覧"
             buttonAriaLabel="お知らせ一覧を見る"
           />
-        </div><!-- /.top-news-btn -->
-      </div><!-- /.l-section-body -->
-    </div><!-- /.l-section -->
-  </div><!-- /.l-container -->
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-
 
 <style lang="scss">
   @use '../../styles/breakpoints' as *;

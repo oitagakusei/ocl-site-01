@@ -14,7 +14,6 @@ const client = createClient({
 });
 
 // ImageField
-// 型定義
 export type ImageField = {
   url: string;
   width: string;
@@ -22,7 +21,6 @@ export type ImageField = {
 };
 
 // news
-// 型定義
 export type News = {
   id: string;
   createdAt: string;
@@ -87,6 +85,136 @@ export const getNewsDetail = async (
   return await client.getListDetail<News>({
     endpoint: "news",
     contentId,
+    queries,
+  });
+};
+
+// networking events
+export type NetworkingEvent = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  eventDate: string;
+  titleText: string;
+  thumbnail?: {
+    url: string;
+    width?: number;
+    height?: number;
+  };
+  thumbnailAlt?: string;
+  text: string;
+  newsId?: string;
+  sortOrder?: number;
+};
+
+export type NetworkingEventResponse = {
+  totalCount: number;
+  offset: number;
+  limit: number;
+  contents: NetworkingEvent[];
+};
+
+export const getNetworkingEvents = async (queries?: MicroCMSQueries) => {
+  return await client.get<NetworkingEventResponse>({
+    endpoint: "networking-events",
+    queries,
+  });
+};
+
+// co creation
+export type CoCreation = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  titleText: string;
+  thumbnail?: {
+    url: string;
+    width?: number;
+    height?: number;
+  };
+  thumbnailAlt?: string;
+  text: string;
+  newsId?: string;
+  sortOrder?: number;
+};
+
+export type CoCreationResponse = {
+  totalCount: number;
+  offset: number;
+  limit: number;
+  contents: CoCreation[];
+};
+
+export const getCoCreation = async (queries?: MicroCMSQueries) => {
+  return await client.get<CoCreationResponse>({
+    endpoint: "co-creation",
+    queries,
+  });
+};
+
+// voices
+export type Voice = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  category: string;
+  text: string;
+  name: string;
+  title?: string;
+  sortOrder?: number;
+};
+
+export type VoiceResponse = {
+  totalCount: number;
+  offset: number;
+  limit: number;
+  contents: Voice[];
+};
+
+export const getVoices = async (queries?: MicroCMSQueries) => {
+  return await client.get<VoiceResponse>({
+    endpoint: "voices",
+    queries,
+  });
+};
+
+// members
+export type Member = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  photo?: {
+    url: string;
+    width?: number;
+    height?: number;
+  };
+  // photoAlt?: string;
+  name: string;
+  position?: string;
+  affiliation: string;
+  role: string;
+  message: string;
+  sortOrder?: number;
+};
+
+export type MemberResponse = {
+  totalCount: number;
+  offset: number;
+  limit: number;
+  contents: Member[];
+};
+
+export const getMembers = async (queries?: MicroCMSQueries) => {
+  return await client.get<MemberResponse>({
+    endpoint: "members",
     queries,
   });
 };

@@ -43,7 +43,6 @@
   }
 
   .top-corporate-partners-title {
-    // text-align: center;
     width: 280px;
     margin-inline: auto;
   }
@@ -59,7 +58,6 @@
   .top-corporate-partners-item {
     width: inherit;
     background-color: var(--color-white);
-    // box-shadow: 4px 4px 6px 0 rgb(1 51 1 / .12);
     box-shadow: 0px 4px 12px 0 rgb(1 51 1 / .15);
 
 
@@ -81,34 +79,39 @@
     }
 
     .top-corporate-partners-title {
-      // text-align: center;
       width: 100%;
-      // margin-inline: auto;
     }
 
     .top-corporate-partners-list {
-      // display: grid;
       grid-template-columns: repeat(3, 1fr);
-      // gap: 40px;
-      // gap: min(32px, calc(32px / var(--width-pc) * 100vw));
       gap: 24px;
       width: 100%;
       margin-block-start: 48px;
-      // margin-inline: auto;
     }
 
     .top-corporate-partners-item {
       width: initial;
 
-      a {
-        // display: flex;
-        // align-items: center;
-        // justify-content: center;
-        // aspect-ratio: 280 / 160;
-      }
-
       img {
         width: min(215px, calc(215px / var(--width-pc) * 100vw));
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .top-corporate-partners-item {
+      a {
+        overflow: hidden;
+
+        img {
+          transition: transform .3s ease;
+        }
+
+        &:hover {
+          img {
+            transform: scale(1.04);
+          }
+        }
       }
     }
   }

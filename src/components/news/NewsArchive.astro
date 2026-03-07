@@ -5,6 +5,7 @@ import NewsPagination from "./NewsPagination.astro";
 import BreadCrumb from "../common/Breadcrumb.astro";
 import CtaArea from "../common/CtaArea.astro";
 import { formatYmd } from "../../utils/date";
+import { truncateText } from "../../utils/text";
 
 type Props = {
   posts: any[];
@@ -75,7 +76,9 @@ const {
                       </time>
                     </div>
 
-                    <h3 class="c-news-card-title c-heading-sm">{item.title}</h3>
+                    <h3 class="c-news-card-title c-heading-sm">
+                      {truncateText(item.title, 50)}
+                    </h3>
                   </a>
                 );
               })

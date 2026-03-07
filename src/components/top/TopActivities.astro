@@ -16,9 +16,7 @@ import Button from "../common/Button.astro";
         <ol class="top-activities-list">
           <li class="top-activities-item">
             <div class="top-activities-title-lv3">
-              <div class="top-activities-step">
-                <img src="../../../public/assets/images/top/text-top-activities-step1@2x.webp" alt="Step 1" loading="lazy" decoding="async" width="84" height="35">
-              </div><!-- /.top-activities-step -->
+              <span class="top-activities-step">Step 1</span>
               <p class="top-activities-sub-title c-heading-sm c-heading-sm--sub-green">まずは出会いから</p>
               <h3 class="top-activities-main-title c-heading-md">交流会の企画・運営</h3>
             </div><!-- /.top-activities-title-lv3 -->
@@ -31,9 +29,7 @@ import Button from "../common/Button.astro";
           </li>
           <li class="top-activities-item">
             <div class="top-activities-title-lv3">
-              <div class="top-activities-step top-activities-step--02">
-                <img src="../../../public/assets/images/top/text-top-activities-step2@2x.webp" alt="Step 1" loading="lazy" decoding="async" width="85" height="35">
-              </div><!-- /.top-activities-step -->
+              <span class="top-activities-step">Step 2</span>
               <p class="top-activities-sub-title c-heading-sm c-heading-sm--sub-green">連携の具体化</p>
               <h3 class="top-activities-main-title c-heading-md">学生と社会をつなぐ共創支援</h3>
             </div><!-- /.top-activities-title-lv3 -->
@@ -87,16 +83,14 @@ import Button from "../common/Button.astro";
   }
 
   .top-activities-step {
-
-    img {
-      width: 84px;
-    }
-
-    &--02 {
-      img {
-        width: 85px;
-      }
-    }
+    display: inline-block;
+    padding-inline: 16px;
+    border-radius: 20px;
+    background-color: var(--color-sub-green2);
+    color: var(--color-white);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: calc(35 / 18);
   }
 
   .top-activities-sub-title {

@@ -1,5 +1,28 @@
 ---
+import { getMembers } from "../../library/microcms";
+import { appendImageFormat } from "../../utils/image";
+import { nl2br } from "../../utils/text";
 
+const NO_IMAGE_SRC = "/assets/images/about/pic-about-members-noimage@2x.webp";
+
+const response = await getMembers({
+  fields: [
+    "id",
+    "photo",
+    // "photoAlt",
+    "name",
+    "position",
+    "affiliation",
+    "role",
+    "message",
+    "sortOrder",
+    "publishedAt",
+  ],
+  limit: 20,
+  orders: "sortOrder,-publishedAt",
+});
+
+const members = response.contents;
 ---
 
 <section class="about-members">
@@ -9,112 +32,91 @@
         <div class="c-title">
           <h2 class="c-title-ja">メンバー紹介</h2>
           <span class="c-title-en" aria-hidden="true">Members</span>
-        </div><!-- /.c-title -->
-      </div><!-- /.about-members-title -->
+        </div>
+      </div>
 
       <div class="l-section-body">
         <div class="about-members-lead">
           <p class="about-members-lead-text">Oita Campus Linkのメンバーは、皆が自分探しの途中です。</p>
           <p class="about-members-lead-text">活動の中枢にいる役員も、さまざまな業務を通しながら「自分は何がしたいのか」という問いの答えを探しています。</p>
           <p class="about-members-lead-text">学年は大学1年生から4年生までと幅広く、学年という壁を越えて、同じ業務に力を合わせて取り組んでいます。</p>
-        </div><!-- /.about-members-lead -->
+        </div>
+
         <div class="about-members-title-lv3">
           <h3 class="c-heading-md c-heading-md--green">役員紹介</h3>
-        </div><!-- /.about-members-title-lv3 -->
-        <p class="about-members-text">Oita Campus Linkの活動を運営・統括している役員をご紹介します。</p>
-        <ul class="about-members-list">
-          <li class="about-members-item">
-            <div class="about-members-head">
-              <div class="about-members-image">
-                <img src="../../../public/assets/images/about/pic-about-members-sample@2x.webp" alt="" loading="lazy" decoding="async" width="180" height="180">
-              </div><!-- /.about-members-image -->
-              <dl class="about-members-info">
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">氏名</dt>
-                  <dd class="about-members-description">小泉 純一郎（広報担当）</dd>
-                </div><!-- /.about-members-info-item -->
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">所属</dt>
-                  <dd class="about-members-description">東京医科歯科大学 4年生</dd>
-                </div><!-- /.about-members-info-item -->
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">役割</dt>
-                  <dd class="about-members-description">広報・情報発信を担当</dd>
-                </div><!-- /.about-members-info-item -->
-              </dl>
-            </div><!-- /.about-members-head -->
-            <p class="about-members-message">学生が社会と出会うきっかけをつくることで、一人ひとりが自分の選択に自信を持てる場を目指しています。</p>
-          </li>
-          <li class="about-members-item">
-            <div class="about-members-head">
-              <div class="about-members-image">
-                <img src="../../../public/assets/images/about/pic-about-members-sample@2x.webp" alt="" loading="lazy" decoding="async" width="180" height="180">
-              </div><!-- /.about-members-image -->
-              <dl class="about-members-info">
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">氏名</dt>
-                  <dd class="about-members-description">小泉 純一郎（広報担当）</dd>
-                </div><!-- /.about-members-info-item -->
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">所属</dt>
-                  <dd class="about-members-description">東京医科歯科大学 4年生</dd>
-                </div><!-- /.about-members-info-item -->
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">役割</dt>
-                  <dd class="about-members-description">広報・情報発信を担当</dd>
-                </div><!-- /.about-members-info-item -->
-              </dl>
-            </div><!-- /.about-members-head -->
-            <p class="about-members-message">学生が社会と出会うきっかけをつくることで、一人ひとりが自分の選択に自信を持てる場を目指しています。学生が社会と出会うきっかけをつくることで、一人ひとりが自分の選択に自信を持てる場を目指しています。</p>
-          </li>
-          <li class="about-members-item">
-            <div class="about-members-head">
-              <div class="about-members-image">
-                <img src="../../../public/assets/images/about/pic-about-members-sample@2x.webp" alt="" loading="lazy" decoding="async" width="180" height="180">
-              </div><!-- /.about-members-image -->
-              <dl class="about-members-info">
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">氏名</dt>
-                  <dd class="about-members-description">小泉 純一郎（広報担当）</dd>
-                </div><!-- /.about-members-info-item -->
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">所属</dt>
-                  <dd class="about-members-description">東京医科歯科大学 4年生</dd>
-                </div><!-- /.about-members-info-item -->
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">役割</dt>
-                  <dd class="about-members-description">広報・情報発信を担当</dd>
-                </div><!-- /.about-members-info-item -->
-              </dl>
-            </div><!-- /.about-members-head -->
-            <p class="about-members-message">学生が社会と出会うきっかけをつくることで、一人ひとりが自分の選択に自信を持てる場を目指しています。</p>
-          </li>
-          <li class="about-members-item">
-            <div class="about-members-head">
-              <div class="about-members-image">
-                <img src="../../../public/assets/images/about/pic-about-members-sample@2x.webp" alt="" loading="lazy" decoding="async" width="180" height="180">
-              </div><!-- /.about-members-image -->
-              <dl class="about-members-info">
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">氏名</dt>
-                  <dd class="about-members-description">小泉 純一郎（広報担当）</dd>
-                </div><!-- /.about-members-info-item -->
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">所属</dt>
-                  <dd class="about-members-description">東京医科歯科大学 4年生</dd>
-                </div><!-- /.about-members-info-item -->
-                <div class="about-members-info-item">
-                  <dt class="about-members-term">役割</dt>
-                  <dd class="about-members-description">広報・情報発信を担当</dd>
-                </div><!-- /.about-members-info-item -->
-              </dl>
-            </div><!-- /.about-members-head -->
-            <p class="about-members-message">学生が社会と出会うきっかけをつくることで、一人ひとりが自分の選択に自信を持てる場を目指しています。</p>
-          </li>
-        </ul>
-      </div><!-- /.l-section-body -->
-    </div><!-- /.l-section -->
-  </div><!-- /.l-container-s -->
+        </div>
+
+        <p class="about-members-text">
+          Oita Campus Linkの活動を運営・統括している役員をご紹介します。
+        </p>
+
+        {
+          members.length > 0 ? (
+            <ul class="about-members-list">
+              {
+                members.map((item) => {
+                  const hasRealPhoto = Boolean(item.photo?.url);
+
+                  const imageSrc = hasRealPhoto
+                    ? appendImageFormat(item.photo.url, "webp")
+                    : NO_IMAGE_SRC;
+
+                  const imageAlt = hasRealPhoto
+                    ? `${item.name}の顔写真`
+                    : "";
+
+                  const displayName = item.position?.trim()
+                    ? `${item.name}（${item.position}）`
+                    : item.name;
+
+                  return (
+                    <li class="about-members-item">
+                      <div class="about-members-head">
+                        <div class="about-members-image">
+                          <img
+                            src={imageSrc}
+                            alt={imageAlt}
+                            loading="lazy"
+                            decoding="async"
+                            width="180"
+                            height="180"
+                          />
+                        </div>
+
+                        <dl class="about-members-info">
+                          <div class="about-members-info-item">
+                            <dt class="about-members-term">氏名</dt>
+                            <dd class="about-members-description">{displayName}</dd>
+                          </div>
+
+                          <div class="about-members-info-item">
+                            <dt class="about-members-term">所属</dt>
+                            <dd class="about-members-description">{item.affiliation}</dd>
+                          </div>
+
+                          <div class="about-members-info-item">
+                            <dt class="about-members-term">役割</dt>
+                            <dd class="about-members-description">{item.role}</dd>
+                          </div>
+                        </dl>
+                      </div>
+
+                      <div
+                        class="about-members-message"
+                        set:html={nl2br(item.message)}
+                      ></div>
+                    </li>
+                  );
+                })
+              }
+            </ul>
+          ) : (
+            <p class="about-members-text">現在、表示できるメンバー情報がありません。</p>
+          )
+        }
+      </div>
+    </div>
+  </div>
 </section>
 
 <style lang="scss">
@@ -174,6 +176,7 @@
     img {
       width: 180px;
       height: auto;
+      border-radius: 50%;
       aspect-ratio: 180 / 180;
       object-fit: cover;
     }
