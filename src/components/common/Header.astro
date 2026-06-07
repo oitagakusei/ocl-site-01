@@ -116,51 +116,51 @@ const isTopPage = Astro.url.pathname === "/";
     });
 
     // navボタンクリック時のサブメニュー開閉処理
-    navButtons.forEach((button) => {
-      button.addEventListener("click", function () {
-        const expanded = this.getAttribute("aria-expanded") === "true";
-        const hiddenList = this.nextElementSibling;
+    // navButtons.forEach((button) => {
+    //   button.addEventListener("click", function () {
+    //     const expanded = this.getAttribute("aria-expanded") === "true";
+    //     const hiddenList = this.nextElementSibling;
 
-        navButtons.forEach((btn) => {
-          btn.setAttribute("aria-expanded", "false");
-          btn.classList.remove("is-open");
-          if (
-            btn.nextElementSibling &&
-            btn.nextElementSibling.classList.contains("header-hidden-list")
-          ) {
-            const list = btn.nextElementSibling;
-            list.classList.remove("is-open");
-            list.style.height = "0"; // 高さをリセット
-          }
-        });
+    //     navButtons.forEach((btn) => {
+    //       btn.setAttribute("aria-expanded", "false");
+    //       btn.classList.remove("is-open");
+    //       if (
+    //         btn.nextElementSibling &&
+    //         btn.nextElementSibling.classList.contains("header-hidden-list")
+    //       ) {
+    //         const list = btn.nextElementSibling;
+    //         list.classList.remove("is-open");
+    //         list.style.height = "0"; // 高さをリセット
+    //       }
+    //     });
 
-        if (!expanded) {
-          this.setAttribute("aria-expanded", "true");
-          this.classList.add("is-open");
-          if (
-            hiddenList &&
-            hiddenList.classList.contains("header-hidden-list")
-          ) {
-            hiddenList.classList.add("is-open");
-            const scrollHeight = hiddenList.scrollHeight; // 中身に合わせた高さを取得
-            hiddenList.style.height = scrollHeight + "px";
-          }
-        }
-      });
-    });
+    //     if (!expanded) {
+    //       this.setAttribute("aria-expanded", "true");
+    //       this.classList.add("is-open");
+    //       if (
+    //         hiddenList &&
+    //         hiddenList.classList.contains("header-hidden-list")
+    //       ) {
+    //         hiddenList.classList.add("is-open");
+    //         const scrollHeight = hiddenList.scrollHeight; // 中身に合わせた高さを取得
+    //         hiddenList.style.height = scrollHeight + "px";
+    //       }
+    //     }
+    //   });
+    // });
 
     // スクロール時に.subメニューを閉じる
-    window.addEventListener("scroll", function () {
-      navButtons.forEach((btn) => {
-        btn.setAttribute("aria-expanded", "false");
-        btn.classList.remove("is-open");
-        const hiddenList = btn.nextElementSibling;
-        if (hiddenList && hiddenList.classList.contains("header-hidden-list")) {
-          hiddenList.classList.remove("is-open");
-          hiddenList.style.height = "0";
-        }
-      });
-    });
+    // window.addEventListener("scroll", function () {
+    //   navButtons.forEach((btn) => {
+    //     btn.setAttribute("aria-expanded", "false");
+    //     btn.classList.remove("is-open");
+    //     const hiddenList = btn.nextElementSibling;
+    //     if (hiddenList && hiddenList.classList.contains("header-hidden-list")) {
+    //       hiddenList.classList.remove("is-open");
+    //       hiddenList.style.height = "0";
+    //     }
+    //   });
+    // });
   });
 </script>
 
