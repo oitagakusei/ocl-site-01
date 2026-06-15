@@ -34,7 +34,12 @@ import Button from "../common/Button.astro";
   @use '../../styles/breakpoints' as *;
 
   .activities-corporate-partners {
-    background-color: var(--color-sub-green1);
+    // 協賛企業紹介を表示する際に復活予定
+    // background-color: var(--color-sub-green1);
+
+    .l-section {
+      padding-block-end: 0; // 協賛企業紹介を表示する際に削除予定
+    }
   }
 
   .activities-corporate-partners-title {

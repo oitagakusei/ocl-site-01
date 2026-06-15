@@ -7,11 +7,12 @@
 ----------------------------------- */
 .l-container,
 .l-container-s {
-  width: calc(350px / var(--width-sp) * 100vw);
+  width: calc(350 / var(--width-sp) * 100vw);
   margin: auto;
 }
 
 @include mq() {
+
   .l-container,
   .l-container-s {
     width: 100%;

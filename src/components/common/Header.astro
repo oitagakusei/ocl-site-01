@@ -25,7 +25,7 @@ const isTopPage = Astro.url.pathname === "/";
       <span class="header-hamburger-icon"></span>
       <span class="header-hamburger-icon"></span>
       <span class="header-hamburger-icon"></span>
-      <span class="u-sr-only">メニュー</span>
+      <span class="u-visually-hidden">メニュー</span>
     </button>
     <div class="header-link">
       <nav class="header-nav" aria-label="サイトナビゲーション">
@@ -57,13 +57,35 @@ const isTopPage = Astro.url.pathname === "/";
       </nav>
       <ul class="header-sns">
         <li class="header-sns-item">
-          <a href="https://www.instagram.com/oitagakusei_tokyo/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/images/global/icon-instagram.svg" alt="Instagram" loading="lazy" decoding="async" width="26" height="26">
+          <a
+            href="https://www.instagram.com/oitagakusei_tokyo/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/assets/images/global/icon-instagram.svg"
+              alt="Instagram"
+              loading="lazy"
+              decoding="async"
+              width="26"
+              height="26"
+            />
           </a>
         </li>
         <li class="header-sns-item">
-          <a href="https://www.instagram.com/oitagakusei_tokyo/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/images/global/icon-line.svg" alt="LINE" loading="lazy" decoding="async" width="26" height="26">
+          <a
+            href="https://www.instagram.com/oitagakusei_tokyo/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/assets/images/global/icon-line.svg"
+              alt="LINE"
+              loading="lazy"
+              decoding="async"
+              width="26"
+              height="26"
+            />
           </a>
         </li>
       </ul>
@@ -259,7 +281,7 @@ const isTopPage = Astro.url.pathname === "/";
 
     .header-container {
       width: 100%;
-      padding-inline: calc(20px / var(--width-sp) * 100vw);
+      padding-inline: calc(20 / var(--width-sp) * 100vw);
       position: relative;
     }
 
@@ -276,7 +298,7 @@ const isTopPage = Astro.url.pathname === "/";
       position: absolute;
       top: 0;
       bottom: 0;
-      right: calc(20px / var(--width-sp) * 100vw);
+      right: calc(20 / var(--width-sp) * 100vw);
       z-index: 30;
     }
 
@@ -373,7 +395,7 @@ const isTopPage = Astro.url.pathname === "/";
       width: 70%;
       height: 100vh;
       padding-block-start: 130px;
-      padding-inline: calc(20px / var(--width-sp) * 100vw);
+      padding-inline: calc(20 / var(--width-sp) * 100vw);
       background-color: var(--color-green);
       position: fixed;
       top: 0;
@@ -464,7 +486,7 @@ const isTopPage = Astro.url.pathname === "/";
             position: absolute;
             bottom: 6px;
             left: 0;
-            transition: width .3s ease;
+            transition: width 0.3s ease;
           }
 
           &:hover::after {

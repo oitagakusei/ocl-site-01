@@ -7,31 +7,67 @@ import Button from "../common/Button.astro";
     <div class="l-section">
       <div class="top-partnership-title">
         <div class="c-title">
-          <h2 class="c-title-ja c-title-ja--white">共に取り組むパートナーを募集しています</h2>
-          <span class="c-title-en c-title-en--white" aria-hidden="true">Partnership</span>
+          <h2 class="c-title-ja c-title-ja--white">
+            共に取り組むパートナーを募集しています
+          </h2>
+          <span class="c-title-en c-title-en--white" aria-hidden="true"
+            >Partnership</span
+          >
         </div><!-- /.c-title -->
       </div><!-- /.top-partnership-title -->
 
       <div class="l-section-body">
-        <p class="top-partnership-lead">Oita Campus Linkは、学生だけで活動する法人ではありません。<br>学生の視点が、企業・行政や地域に新たな気づきをもたらす場でもあります。</p>
+        <p class="top-partnership-lead">
+          Oita Campus Linkは、学生だけで活動する法人ではありません。<br
+          />学生の視点が、企業・行政や地域に新たな気づきをもたらす場でもあります。
+        </p>
         <div class="top-partnership-gallery">
           <div class="top-partnership-image">
-            <img src="/assets/images/top/pic-top-partnership-01@2x.webp" alt="交流会で講話をする佐藤樹一郎大分県知事" loading="lazy" decoding="async" width="350" height="230">
+            <img
+              src="/assets/images/top/pic-top-partnership-01@2x.webp"
+              alt="交流会で講話をする佐藤樹一郎大分県知事"
+              loading="lazy"
+              decoding="async"
+              width="350"
+              height="230"
+            />
           </div><!-- /.top-partnership-image -->
           <div class="top-partnership-image">
-            <img src="/assets/images/top/pic-top-partnership-02@2x.webp" alt="交流会で乾杯の音頭をとる学生理事" loading="lazy" decoding="async" width="350" height="230">
+            <img
+              src="/assets/images/top/pic-top-partnership-02@2x.webp"
+              alt="交流会で乾杯の音頭をとる学生理事"
+              loading="lazy"
+              decoding="async"
+              width="350"
+              height="230"
+            />
           </div><!-- /.top-partnership-image -->
           <div class="top-partnership-image">
-            <img src="/assets/images/top/pic-top-partnership-03@2x.webp" alt="新入生歓迎会での集合写真" loading="lazy" decoding="async" width="350" height="230">
+            <img
+              src="/assets/images/top/pic-top-partnership-03@2x.webp"
+              alt="新入生歓迎会での集合写真"
+              loading="lazy"
+              decoding="async"
+              width="350"
+              height="230"
+            />
           </div><!-- /.top-partnership-image -->
         </div><!-- /.top-partnership-gallery -->
         <div class="top-partnership-description">
-          <p class="top-partnership-text">パートナーシップの形態として、以下の2つがあります。</p>
+          <p class="top-partnership-text">
+            パートナーシップの形態として、以下の2つがあります。
+          </p>
           <ul class="top-partnership-list">
-            <li class="top-partnership-item">学生と共にプロジェクトを進める「共創パートナー」</li>
-            <li class="top-partnership-item">活動を支援する「協賛・賛助会員」</li>
+            <li class="top-partnership-item">
+              学生と共にプロジェクトを進める「共創パートナー」
+            </li>
+            <li class="top-partnership-item">
+              活動を支援する「協賛・賛助会員」
+            </li>
           </ul>
-          <p class="top-partnership-text">ご関心のある形については、お問い合わせの際にお選びいただけます。</p>
+          <p class="top-partnership-text">
+            ご関心のある形については、お問い合わせの際にお選びいただけます。
+          </p>
         </div><!-- /.top-partnership-description -->
         <div class="top-partnership-btn">
           <Button
@@ -45,12 +81,15 @@ import Button from "../common/Button.astro";
   </div><!-- /.l-container -->
 </section>
 
-
 <style lang="scss">
-  @use '../../styles/breakpoints' as *;
+  @use "../../styles/breakpoints" as *;
 
   .top-partnership {
-    background-image: linear-gradient(0deg, rgba(255, 255, 255, 1) 21%, rgba(0, 51, 0, 1) 86%);
+    background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 21%,
+      rgba(0, 51, 0, 1) 86%
+    );
   }
 
   .top-partnership-lead {
@@ -86,8 +125,8 @@ import Button from "../common/Button.astro";
       border-radius: 50%;
       background-color: currentColor;
       position: absolute;
-      top: .675em;
-      left: .4em;
+      top: 0.675em;
+      left: 0.4em;
     }
   }
 
@@ -99,8 +138,7 @@ import Button from "../common/Button.astro";
   @include mq() {
     .top-partnership-gallery {
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      gap: calc(20px / var(--width-pc) * 100vw);
+      gap: calc(20 / var(--width-pc) * 100vw);
       margin-block-start: 40px;
     }
 

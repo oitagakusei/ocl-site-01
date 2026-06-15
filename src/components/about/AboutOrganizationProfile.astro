@@ -2,11 +2,15 @@
   <div class="l-container-s">
     <div class="l-section">
       <div class="about-organization-profile-content">
-        <h2 class="about-organization-profile-title c-heading-sm c-heading-sm--green">団体概要</h2>
+        <h2
+          class="about-organization-profile-title c-heading-sm c-heading-sm--green"
+        >
+          団体概要
+        </h2>
         <div class="about-organization-profile-list">
           <dl class="c-about-list">
             <div class="c-about-list-item">
-              <dt class="c-about-list-term">法人名</dt>
+              <dt class="c-about-list-term">団体名</dt>
               <dd class="c-about-list-description">Oita Campus Link</dd>
             </div>
             <div class="c-about-list-item">
@@ -25,10 +29,10 @@
               <dt class="c-about-list-term">主な活動</dt>
               <dd class="c-about-list-description">学生×企業×社会連携</dd>
             </div>
-            <div class="c-about-list-item">
+            <!-- <div class="c-about-list-item">
               <dt class="c-about-list-term">法人格</dt>
-              <dd class="c-about-list-description">2026年4月&nbsp;NPO法人化</dd>
-            </div>
+              <dd class="c-about-list-description">2026年10月&nbsp;NPO法人化</dd>
+            </div> -->
             <div class="c-about-list-item">
               <dt class="c-about-list-term">メールアドレス</dt>
               <dd class="c-about-list-description">info@〇〇〇〇.com</dd>
@@ -45,7 +49,7 @@
 </section>
 
 <style lang="scss">
-  @use '../../styles/breakpoints' as *;
+  @use "../../styles/breakpoints" as *;
 
   .about-organization-profile {
     margin-block-start: -1000px;
@@ -54,7 +58,7 @@
 
   .about-organization-profile-content {
     padding-block: 40px;
-    padding-inline: calc(20px / var(--width-sp) * 100vw);
+    padding-inline: calc(20 / var(--width-sp) * 100vw);
     background-color: var(--color-white);
   }
 

@@ -36,9 +36,15 @@ const members = response.contents;
 
       <div class="l-section-body">
         <div class="about-members-lead">
-          <p class="about-members-lead-text">Oita Campus Linkのメンバーは、皆が自分探しの途中です。</p>
-          <p class="about-members-lead-text">活動の中枢にいる役員も、さまざまな業務を通しながら「自分は何がしたいのか」という問いの答えを探しています。</p>
-          <p class="about-members-lead-text">学年は大学1年生から4年生までと幅広く、学年という壁を越えて、同じ業務に力を合わせて取り組んでいます。</p>
+          <p class="about-members-lead-text">
+            Oita Campus Linkのメンバーは、皆が自分探しの途中です。
+          </p>
+          <p class="about-members-lead-text">
+            活動の中枢にいる役員も、さまざまな業務を通しながら「自分は何がしたいのか」という問いの答えを探しています。
+          </p>
+          <p class="about-members-lead-text">
+            学年は大学1年生から4年生までと幅広く、学年という壁を越えて、同じ業務に力を合わせて取り組んでいます。
+          </p>
         </div>
 
         <div class="about-members-title-lv3">
@@ -52,65 +58,67 @@ const members = response.contents;
         {
           members.length > 0 ? (
             <ul class="about-members-list">
-              {
-                members.map((item) => {
-                  const hasRealPhoto = Boolean(item.photo?.url);
+              {members.map((item) => {
+                const hasRealPhoto = Boolean(item.photo?.url);
 
-                  const imageSrc = hasRealPhoto
-                    ? appendImageFormat(item.photo.url, "webp")
-                    : NO_IMAGE_SRC;
+                const imageSrc = hasRealPhoto
+                  ? appendImageFormat(item.photo.url, "webp")
+                  : NO_IMAGE_SRC;
 
-                  const imageAlt = hasRealPhoto
-                    ? `${item.name}の顔写真`
-                    : "";
+                const imageAlt = hasRealPhoto ? `${item.name}の顔写真` : "";
 
-                  const displayName = item.position?.trim()
-                    ? `${item.name}（${item.position}）`
-                    : item.name;
+                const displayName = item.position?.trim()
+                  ? `${item.name}（${item.position}）`
+                  : item.name;
 
-                  return (
-                    <li class="about-members-item">
-                      <div class="about-members-head">
-                        <div class="about-members-image">
-                          <img
-                            src={imageSrc}
-                            alt={imageAlt}
-                            loading="lazy"
-                            decoding="async"
-                            width="180"
-                            height="180"
-                          />
-                        </div>
-
-                        <dl class="about-members-info">
-                          <div class="about-members-info-item">
-                            <dt class="about-members-term">氏名</dt>
-                            <dd class="about-members-description">{displayName}</dd>
-                          </div>
-
-                          <div class="about-members-info-item">
-                            <dt class="about-members-term">所属</dt>
-                            <dd class="about-members-description">{item.affiliation}</dd>
-                          </div>
-
-                          <div class="about-members-info-item">
-                            <dt class="about-members-term">役割</dt>
-                            <dd class="about-members-description">{item.role}</dd>
-                          </div>
-                        </dl>
+                return (
+                  <li class="about-members-item">
+                    <div class="about-members-head">
+                      <div class="about-members-image">
+                        <img
+                          src={imageSrc}
+                          alt={imageAlt}
+                          loading="lazy"
+                          decoding="async"
+                          width="180"
+                          height="180"
+                        />
                       </div>
 
-                      <div
-                        class="about-members-message"
-                        set:html={nl2br(item.message)}
-                      ></div>
-                    </li>
-                  );
-                })
-              }
+                      <dl class="about-members-info">
+                        <div class="about-members-info-item">
+                          <dt class="about-members-term">氏名</dt>
+                          <dd class="about-members-description">
+                            {displayName}
+                          </dd>
+                        </div>
+
+                        <div class="about-members-info-item">
+                          <dt class="about-members-term">所属</dt>
+                          <dd class="about-members-description">
+                            {item.affiliation}
+                          </dd>
+                        </div>
+
+                        <div class="about-members-info-item">
+                          <dt class="about-members-term">役割</dt>
+                          <dd class="about-members-description">{item.role}</dd>
+                        </div>
+                      </dl>
+                    </div>
+
+                    <div
+                      class="about-members-message"
+                      set:html={nl2br(item.message)}
+                    />
+                  </li>
+                );
+              })}
             </ul>
           ) : (
-            <p class="about-members-text">現在、表示できるメンバー情報がありません。</p>
+            <p class="about-members-text">
+              現在、表示できるメンバー情報がありません。
+            </p>
           )
         }
       </div>
@@ -119,11 +127,13 @@ const members = response.contents;
 </section>
 
 <style lang="scss">
-  @use '../../styles/breakpoints' as *;
+  @use "../../styles/breakpoints" as *;
 
   .about-members {
+    background-color: var(--color-bg-base);
+
     .l-section {
-      padding-block-end: 0;
+      padding-block: 0;
     }
   }
 
@@ -156,7 +166,7 @@ const members = response.contents;
 
   .about-members-item {
     padding-block: 40px;
-    padding-inline: calc(20px / var(--width-sp) * 100vw);
+    padding-inline: calc(20 / var(--width-sp) * 100vw);
     background-color: var(--color-sub-green1);
   }
 

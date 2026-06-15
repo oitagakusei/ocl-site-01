@@ -4,9 +4,9 @@ import HeadingLv1 from "../components/common/HeadingLv1.astro";
 import AboutLead from "../components/about/AboutLead.astro";
 import AboutMessage from "../components/about/AboutMessage.astro";
 import AboutPhilosophy from "../components/about/AboutPhilosophy.astro";
-import AboutOrganizationProfile from "../components/about/AboutOrganizationProfile.astro"
-import AboutLinks from "../components/about/AboutLinks.astro"
-import AboutMembers from "../components/about/AboutMembers.astro"
+import AboutOrganizationProfile from "../components/about/AboutOrganizationProfile.astro";
+import AboutLinks from "../components/about/AboutLinks.astro";
+import AboutMembers from "../components/about/AboutMembers.astro";
 import BreadCrumb from "../components/common/Breadcrumb.astro";
 import CtaArea from "../components/common/CtaArea.astro";
 ---
@@ -14,7 +14,7 @@ import CtaArea from "../components/common/CtaArea.astro";
 <Layout
   title="産学連携とは違う。学生と社会をつなぐ共創モデル｜Oita Campus Linkについて"
   ogType="website"
-  description="Oita Campus Linkは学生のみで運営するNPO法人です。学生と企業・自治体をつなぎ、対等な共創が生まれる仕組みをつくることを目的としています。団体の理念や活動の背景をご紹介します。"
+  description="Oita Campus Linkは学生のみで運営する学生団体です。学生と企業・自治体をつなぎ、対等な共創が生まれる仕組みをつくることを目的としています。団体の理念や活動の背景をご紹介します。"
 >
   <div class="about">
     <div class="about-heading-lv1">
@@ -40,7 +40,7 @@ import CtaArea from "../components/common/CtaArea.astro";
         <AboutOrganizationProfile />
 
         <!-- about-links -->
-        <AboutLinks />
+        <!-- <AboutLinks /> -->
 
         <!-- about-members -->
         <AboutMembers />
@@ -49,8 +49,14 @@ import CtaArea from "../components/common/CtaArea.astro";
       <!-- breadcrumb -->
       <BreadCrumb
         breadcrumbClass="l-container-s"
-        breadcrumbLists={[{ name: "Oita Campus Linkについて", path: "/about", schemaName: "Oita Campus Linkについて" }]}
-        siteUrl="https://creative-basbousa-a8451a.netlify.app"
+        breadcrumbLists={[
+          {
+            name: "Oita Campus Linkについて",
+            path: "/about",
+            schemaName: "Oita Campus Linkについて",
+          },
+        ]}
+        siteUrl="https://sunny-lollipop-044fb5.netlify.app/"
       />
     </main>
 
@@ -60,7 +66,7 @@ import CtaArea from "../components/common/CtaArea.astro";
 </Layout>
 
 <style lang="scss">
-  @use '../styles/breakpoints' as *;
+  @use "../styles/breakpoints" as *;
 
   .about-content {
     margin-block-start: 56px;

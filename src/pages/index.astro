@@ -14,21 +14,20 @@ import CtaArea from "../components/common/CtaArea.astro";
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://creative-basbousa-a8451a.netlify.app/#organization",
-  name: "NPO法人 Oita Campus Link",
-  alternateName: "Oita Campus Link",
-  url: "https://creative-basbousa-a8451a.netlify.app/",
-  logo: "https://creative-basbousa-a8451a.netlify.app/assets/images/global/logo.png",
-  image: "https://creative-basbousa-a8451a.netlify.app/ogp.png",
+  "@id": "https://sunny-lollipop-044fb5.netlify.app//#organization",
+  name: "Oita Campus Link",
+  url: "https://sunny-lollipop-044fb5.netlify.app//",
+  logo: "https://sunny-lollipop-044fb5.netlify.app//assets/images/global/logo.png",
+  image: "https://sunny-lollipop-044fb5.netlify.app//ogp.png",
   description:
-    "Oita Campus Linkは、学生自身が運営し意思決定するNPO法人です。従来の産学連携とは異なる形で学生と企業・自治体をつなぎ、対等な共創が生まれる機会をつくることを目的としています。",
+    "Oita Campus Linkは、学生自身が運営し意思決定する学生団体です。従来の産学連携とは異なる形で学生と企業・自治体をつなぎ、対等な共創が生まれる機会をつくることを目的としています。",
 });
 ---
 
 <Layout
-  title="産学連携とは違う。学生が社会と共創する機会をつくるNPO｜Oita Campus Link"
+  title="産学連携とは違う。学生が社会と共創する機会をつくる学生団体｜Oita Campus Link"
   ogType="website"
-  description="Oita Campus Linkは、学生自身が運営し意思決定するNPO法人です。従来の産学連携とは異なる形で学生と企業・自治体をつなぎ、対等な共創が生まれる機会をつくることを目的としています。"
+  description="Oita Campus Linkは、学生自身が運営し意思決定する学生団体です。従来の産学連携とは異なる形で学生と企業・自治体をつなぎ、対等な共創が生まれる機会をつくることを目的としています。"
   jsonLd={jsonLd}
 >
   <!-- top-kv -->
@@ -54,7 +53,7 @@ const jsonLd = JSON.stringify({
     <TopFaq />
 
     <!-- top-corporate-partners -->
-    <TopCorporatePartners />
+    <!-- <TopCorporatePartners /> -->
   </main>
 
   <!-- cta-area -->

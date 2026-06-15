@@ -5,10 +5,8 @@ import ActivitiesBackground from "../components/activities/ActivitiesBackground.
 import ActivitiesOverview from "../components/activities/ActivitiesOverview.astro";
 import ActivitiesActivityReports from "../components/activities/ActivitiesActivityReports.astro";
 import ActivitiesVoices from "../components/activities/ActivitiesVoices.astro";
-
 import ActivitiesSponsors from "../components/activities/ActivitiesSponsors.astro";
 import ActivitiesCorporatePartners from "../components/activities/ActivitiesCorporatePartners.astro";
-
 import BreadCrumb from "../components/common/Breadcrumb.astro";
 import CtaArea from "../components/common/CtaArea.astro";
 ---
@@ -42,7 +40,7 @@ import CtaArea from "../components/common/CtaArea.astro";
         <ActivitiesVoices />
 
         <!-- activities-sponsors -->
-        <ActivitiesSponsors />
+        <!-- <ActivitiesSponsors /> -->
 
         <!-- activities-corporate-partners -->
         <ActivitiesCorporatePartners />
@@ -51,8 +49,10 @@ import CtaArea from "../components/common/CtaArea.astro";
       <!-- breadcrumb -->
       <BreadCrumb
         breadcrumbClass="l-container-s"
-        breadcrumbLists={[{ name: "活動紹介", path: "/activities", schemaName: "活動紹介" }]}
-        siteUrl="https://creative-basbousa-a8451a.netlify.app"
+        breadcrumbLists={[
+          { name: "活動紹介", path: "/activities", schemaName: "活動紹介" },
+        ]}
+        siteUrl="https://sunny-lollipop-044fb5.netlify.app/"
       />
     </main>
 
@@ -62,7 +62,7 @@ import CtaArea from "../components/common/CtaArea.astro";
 </Layout>
 
 <style lang="scss">
-  @use '../styles/breakpoints' as *;
+  @use "../styles/breakpoints" as *;
 
   .activities-content {
     margin-block-start: 56px;

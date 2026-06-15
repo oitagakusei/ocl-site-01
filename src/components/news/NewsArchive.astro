@@ -44,66 +44,74 @@ const {
       <div class="archive-content">
         <div class="l-container">
           <div class="archive-news-list">
-            {posts.length > 0 ? (
-              posts.map((item) => {
-                const thumbSrc = item.thumbnail?.url
-                  ? `${item.thumbnail.url}${item.thumbnail.url.includes("?") ? "&" : "?"}fm=webp`
-                  : baseNoImageSrc;
+            {
+              posts.length > 0 ? (
+                posts.map((item) => {
+                  const thumbSrc = item.thumbnail?.url
+                    ? `${item.thumbnail.url}${item.thumbnail.url.includes("?") ? "&" : "?"}fm=webp`
+                    : baseNoImageSrc;
 
-                const altText =
-                  (item.thumbnailAlt && item.thumbnailAlt.trim()) ||
-                  "お知らせのサムネイル画像";
+                  const altText =
+                    (item.thumbnailAlt && item.thumbnailAlt.trim()) ||
+                    "お知らせのサムネイル画像";
 
-                const displayDate = formatYmd(item.publishedAt);
+                  const displayDate = formatYmd(item.publishedAt);
 
-                return (
-                  <a
-                    href={`/news/${item.id}`}
-                    class="c-news-card"
-                    aria-label={`お知らせ: ${item.title}`}
-                  >
-                    <div class="c-news-card-thumbnail">
-                      <img
-                        src={thumbSrc}
-                        alt={altText}
-                        loading="lazy"
-                        decoding="async"
-                        width="318"
-                        height="208"
-                      />
-                    </div>
+                  return (
+                    <a
+                      href={`/news/${item.id}`}
+                      class="c-news-card"
+                      aria-label={`お知らせ: ${item.title}`}
+                    >
+                      <div class="c-news-card-thumbnail">
+                        <img
+                          src={thumbSrc}
+                          alt={altText}
+                          loading="lazy"
+                          decoding="async"
+                          width="318"
+                          height="208"
+                        />
+                      </div>
 
-                    <div class="c-news-card-meta">
-                      <span class="c-news-card-category">{item.category}</span>
-                      <time datetime={item.publishedAt} class="c-news-card-date">
-                        {displayDate}
-                      </time>
-                    </div>
+                      <div class="c-news-card-meta">
+                        <span class="c-news-card-category">
+                          {item.category}
+                        </span>
+                        <time
+                          datetime={item.publishedAt}
+                          class="c-news-card-date"
+                        >
+                          {displayDate}
+                        </time>
+                      </div>
 
-                    <h3 class="c-news-card-title c-heading-sm">
-                      {truncateText(item.title, 50)}
-                    </h3>
-                  </a>
-                );
-              })
-            ) : (
-              <p class="archive-news-empty">現在、表示できる記事がありません。</p>
-            )}
+                      <h3 class="c-news-card-title c-heading-sm">
+                        {truncateText(item.title, 50)}
+                      </h3>
+                    </a>
+                  );
+                })
+              ) : (
+                <p class="archive-news-empty">
+                  現在、表示できる記事がありません。
+                </p>
+              )
+            }
           </div>
 
           <div class="archive-news-pagination">
-            <NewsPagination
-              currentPage={currentPage}
-              lastPage={lastPage}
-            />
+            <NewsPagination currentPage={currentPage} lastPage={lastPage} />
           </div>
         </div>
       </div>
 
       <BreadCrumb
         breadcrumbClass="l-container"
-        breadcrumbLists={[{ name: "お知らせ", path: "/news", schemaName: "お知らせ" }]}
-        siteUrl="https://creative-basbousa-a8451a.netlify.app"
+        breadcrumbLists={[
+          { name: "お知らせ", path: "/news", schemaName: "お知らせ" },
+        ]}
+        siteUrl="https://sunny-lollipop-044fb5.netlify.app/"
       />
     </main>
 
@@ -112,7 +120,7 @@ const {
 </Layout>
 
 <style lang="scss">
-  @use '../../styles/breakpoints' as *;
+  @use "../../styles/breakpoints" as *;
 
   .archive-content {
     margin-block-start: 56px;

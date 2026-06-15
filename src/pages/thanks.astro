@@ -1,0 +1,85 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="お問い合わせありがとうございました｜Oita Campus Link"
+  ogType="website"
+  description="お問い合わせありがとうございます。内容を確認の上、3営業日以内にご連絡いたします。"
+  noIndex="true"
+>
+  <main class="contact-thanks">
+    <div class="contact-thanks-container l-container-s">
+      <h1 class="contact-thanks-title-lv1">お問い合わせいただき、<span>ありがとうございます。</span></h1>
+      <div class="contact-thanks-content">
+        <p class="contact-thanks-text">入力いただいたメールアドレス宛に、確認メールをお送りしました。内容をご確認ください。<br>確認メールが届かない場合は、迷惑メールフォルダもあわせてご確認ください。</p>
+        <p class="contact-thanks-text">お問い合わせ内容を確認の上、3営業日以内にご連絡いたします。<br>3営業日を過ぎても連絡がない場合は、お手数ですが再度お問い合わせください。</p>
+        <div class="contact-thanks-top-link">
+          <a href="/">トップページに戻る</a>
+        </div>
+      </div>
+    </div><!-- /.l-container-s -->
+  </main>
+</Layout>
+
+<style lang="scss">
+  @use '../styles/breakpoints' as *;
+
+  .contact-thanks {
+    padding-block: 120px;
+  }
+
+  .contact-thanks-title-lv1 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.55;
+    text-align: center;
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  .contact-thanks-content {
+    margin-block-start: 32px;
+  }
+
+  .contact-thanks-text {
+    & + & {
+      margin-block-start: 1em;
+    }
+  }
+
+  .contact-thanks-top-link {
+    margin-block-start: 32px;
+
+    a {
+      display: inline-block;
+      padding-block: 4px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  @include mq() {
+    .contact-thanks {
+      padding-block: 200px;
+    }
+
+    .contact-thanks-container {
+      max-width: calc(720px + 80px * 2);
+    }
+
+    .contact-thanks-title-lv1 {
+      font-size: 32px;
+    }
+
+    .contact-thanks-content {
+      margin-block-start: 40px;
+    }
+
+    .contact-thanks-top-link {
+      margin-block-start: 40px;
+    }
+  }
+</style>

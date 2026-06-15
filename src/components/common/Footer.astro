@@ -77,16 +77,9 @@ const { logo, logoAlt } = Astro.props;
   </div><!-- /.l-container -->
 
   <!-- トップへ戻るボタン -->
-  <a href="#body" class="footer-page-top" aria-label="ページトップへ戻る">
-    <img
-      src="/assets/images/global/icon-arrow-up.svg"
-      alt=""
-      loading="lazy"
-      decoding="async"
-      width="6"
-      height="16"
-    />
-  </a><!-- /.footer-page-top -->
+  <a href="#body" class="footer-page-top">
+    <span class="u-visually-hidden">ページトップへ戻る</span>
+  </a>
 </footer>
 
 <script is:inline>
@@ -103,18 +96,18 @@ const { logo, logoAlt } = Astro.props;
     let footerVisible = false;
 
     // フッター検知
-    const observer = new IntersectionObserver(
-      (entries) => {
-        footerVisible = entries[0].isIntersecting;
-        toggleButton();
-      },
-      {
-        root: null,
-        threshold: 0
-      }
-    );
+    // const observer = new IntersectionObserver(
+    //   (entries) => {
+    //     footerVisible = entries[0].isIntersecting;
+    //     toggleButton();
+    //   },
+    //   {
+    //     root: null,
+    //     threshold: 0
+    //   }
+    // );
 
-    observer.observe(footer);
+    // observer.observe(footer);
 
     // スクロール監視
     window.addEventListener("scroll", toggleButton);
@@ -218,27 +211,6 @@ const { logo, logoAlt } = Astro.props;
     }
   }
 
-  .footer-page-top {
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--color-green);
-    background-color: var(--color-green);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .3s;
-    position: fixed;
-    right: 20px;
-    bottom: 10px;
-
-    img {
-      width: 6px;
-      filter: invert(100%) sepia(71%) saturate(2%) hue-rotate(326deg) brightness(113%) contrast(101%);
-    }
-  }
-
   @include mq() {
     .footer-logo {
       img {
@@ -312,17 +284,6 @@ const { logo, logoAlt } = Astro.props;
         font-size: 12px;
       }
     }
-
-    .footer-page-top {
-      width: 48px;
-      height: 48px;
-      right: 24px;
-      bottom: 24px;
-
-      img {
-        width: 8px;
-      }
-    }
   }
 
   @media (any-hover: hover) {
@@ -332,18 +293,58 @@ const { logo, logoAlt } = Astro.props;
         opacity: .75;
       }
     }
+  }
 
-    .footer-page-top {
-      transition: background-color .3s;
+  // トップへ戻るボタン
+  .footer-page-top {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid;
+    color: var(--color-bg-blue);
+    color: #2c5c2c;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+    transition: background-color .3s ease;
 
-      img {
-        transition: filter .3s;
+    &::after {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border-top: 3px solid currentColor;
+      border-left: 3px solid currentColor;
+      margin-block-start: 8px;
+      rotate: 45deg;
+      transition: border-color .3s ease;
+    }
+
+    @include mq() {
+      width: 48px;
+      height: 48px;
+      right: 24px;
+      bottom: 24px;
+
+      &::after {
+        width: 16px;
+        height: 16px;
       }
-      &:hover {
-        background-color: var(--color-white);
+    }
+  }
 
-        img {
-          filter: invert(16%) sepia(32%) saturate(2179%) hue-rotate(82deg) brightness(90%) contrast(108%);
+  @media (any-hover: hover)  {
+    .footer-page-top {
+      &:hover {
+        background-color: #2c5c2c;
+
+        &::after {
+          border-color: var(--color-white);
         }
       }
     }

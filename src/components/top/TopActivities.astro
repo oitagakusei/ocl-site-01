@@ -17,27 +17,61 @@ import Button from "../common/Button.astro";
           <li class="top-activities-item">
             <div class="top-activities-title-lv3">
               <span class="top-activities-step">Step 1</span>
-              <p class="top-activities-sub-title c-heading-sm c-heading-sm--sub-green">まずは出会いから</p>
-              <h3 class="top-activities-main-title c-heading-md">交流会の企画・運営</h3>
+              <p
+                class="top-activities-sub-title c-heading-sm c-heading-sm--sub-green"
+              >
+                まずは出会いから
+              </p>
+              <h3 class="top-activities-main-title c-heading-md">
+                交流会の企画・運営
+              </h3>
             </div><!-- /.top-activities-title-lv3 -->
             <div class="top-activities-content">
               <div class="top-activities-image">
-                <img src="/assets/images/top/pic-top-activities-01@2x.webp" alt="学生たちと、ビジネスコンテストに参加する高校生との打ち合わせの様子" loading="lazy" decoding="async" width="310" height="200">
+                <img
+                  src="/assets/images/top/pic-top-activities-01@2x.webp"
+                  alt="学生たちと、ビジネスコンテストに参加する高校生との打ち合わせの様子"
+                  loading="lazy"
+                  decoding="async"
+                  width="310"
+                  height="200"
+                />
               </div><!-- /.top-activities-image -->
-              <p class="top-activities-text">Oita Campus Linkが主催し、学生同士だけでなく社会人も交えた交流の場を開催しています。<br>学年や立場を越えた対話を通じて、互いの価値観や取り組みを知り、連携や挑戦につながる「出会いのきっかけ」を生み出します。</p>
+              <p class="top-activities-text">
+                Oita Campus
+                Linkが主催し、学生同士だけでなく社会人も交えた交流の場を開催しています。<br
+                />学年や立場を越えた対話を通じて、互いの価値観や取り組みを知り、連携や挑戦につながる「出会いのきっかけ」を生み出します。
+              </p>
             </div><!-- /.top-activities-content -->
           </li>
           <li class="top-activities-item">
             <div class="top-activities-title-lv3">
               <span class="top-activities-step">Step 2</span>
-              <p class="top-activities-sub-title c-heading-sm c-heading-sm--sub-green">連携の具体化</p>
-              <h3 class="top-activities-main-title c-heading-md">学生と社会をつなぐ共創支援</h3>
+              <p
+                class="top-activities-sub-title c-heading-sm c-heading-sm--sub-green"
+              >
+                連携の具体化
+              </p>
+              <h3 class="top-activities-main-title c-heading-md">
+                学生と社会をつなぐ共創支援
+              </h3>
             </div><!-- /.top-activities-title-lv3 -->
             <div class="top-activities-content">
               <div class="top-activities-image">
-                <img src="/assets/images/top/pic-top-activities-02@2x.webp" alt="交流会に参加した学生と社会人の集合写真" loading="lazy" decoding="async" width="310" height="200">
+                <img
+                  src="/assets/images/top/pic-top-activities-02@2x.webp"
+                  alt="交流会に参加した学生と社会人の集合写真"
+                  loading="lazy"
+                  decoding="async"
+                  width="310"
+                  height="200"
+                />
               </div><!-- /.top-activities-image -->
-              <p class="top-activities-text">交流会などで生まれたつながりを起点に、企業・行政と学生が協力する取り組みが生まれています。<br>Oita Campus Linkは、企画の相談や情報整理、必要に応じた伴走を通じて、学生と社会の連携が形になるまでをサポートします。</p>
+              <p class="top-activities-text">
+                交流会などで生まれたつながりを起点に、企業・行政と学生が協力する取り組みが生まれています。<br
+                />Oita Campus
+                Linkは、企画の相談や情報整理、必要に応じた伴走を通じて、学生と社会の連携が形になるまでをサポートします。
+              </p>
             </div><!-- /.top-activities-content -->
           </li>
         </ol>
@@ -54,9 +88,8 @@ import Button from "../common/Button.astro";
   </div><!-- /.l-container -->
 </section>
 
-
 <style lang="scss">
-  @use '../../styles/breakpoints' as *;
+  @use "../../styles/breakpoints" as *;
 
   .top-activities-list {
     display: grid;
@@ -65,7 +98,7 @@ import Button from "../common/Button.astro";
 
   .top-activities-item {
     padding-block: 40px;
-    padding-inline: calc(20px / var(--width-sp) * 100vw);
+    padding-inline: calc(20 / var(--width-sp) * 100vw);
     background-color: var(--color-white);
   }
 
@@ -110,7 +143,7 @@ import Button from "../common/Button.astro";
   @include mq() {
     .top-activities-list {
       grid-template-columns: repeat(2, 1fr);
-      gap: calc(40px / var(--width-pc) * 100vw);
+      gap: calc(40 / var(--width-pc) * 100vw);
     }
 
     .top-activities-item {

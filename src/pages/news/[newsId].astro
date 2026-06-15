@@ -99,40 +99,39 @@ const thumbnailSrc = news.thumbnail?.url
 
 // alt：未指定・空白のみなら固定文言
 const thumbnailAlt =
-  (news.thumbnailAlt && news.thumbnailAlt.trim()) ||
-  "お知らせのサムネイル画像";
+  (news.thumbnailAlt && news.thumbnailAlt.trim()) || "お知らせのサムネイル画像";
 
-  // 構造化データ生成関数
-  const newsJsonLd = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "@id": `https://creative-basbousa-a8451a.netlify.app/news/${news.id}#article`,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `https://creative-basbousa-a8451a.netlify.app/news/${news.id}`,
+// 構造化データ生成関数
+const newsJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": `https://sunny-lollipop-044fb5.netlify.app//news/${news.id}#article`,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `https://sunny-lollipop-044fb5.netlify.app//news/${news.id}`,
+  },
+  headline: news.title,
+  description: metaDescription,
+  image: [thumbnailSrc],
+  datePublished: news.publishedAt,
+  dateModified: news.updatedAt || news.publishedAt,
+  author: {
+    "@type": "Organization",
+    name: "Oita Campus Link",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Oita Campus Link",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://sunny-lollipop-044fb5.netlify.app//assets/images/global/logo.png",
     },
-    headline: news.title,
-    description: metaDescription,
-    image: [thumbnailSrc],
-    datePublished: news.publishedAt,
-    dateModified: news.updatedAt || news.publishedAt,
-    author: {
-      "@type": "Organization",
-      name: "NPO法人 Oita Campus Link",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "NPO法人 Oita Campus Link",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://creative-basbousa-a8451a.netlify.app/assets/images/global/logo.png",
-      },
-    },
-    "isPartOf":{
-      "@type":"WebSite",
-      "@id":"https://creative-basbousa-a8451a.netlify.app/#website"
-    },
-  });
+  },
+  isPartOf: {
+    "@type": "WebSite",
+    "@id": "https://sunny-lollipop-044fb5.netlify.app//#website",
+  },
+});
 ---
 
 <Layout
@@ -168,7 +167,7 @@ const thumbnailAlt =
             />
           </div>
 
-          <div class="single-content" set:html={cleanContent}></div>
+          <div class="single-content" set:html={cleanContent} />
         </div>
       </article>
 
@@ -183,13 +182,13 @@ const thumbnailAlt =
 
       <BreadCrumb
         breadcrumbClass="l-container-s"
-        siteUrl="https://creative-basbousa-a8451a.netlify.app"
+        siteUrl="https://sunny-lollipop-044fb5.netlify.app/"
         breadcrumbLists={[
           { name: "お知らせ", path: "/news", schemaName: "お知らせ" },
           {
             name: truncateText(news.title, 40),
-            schemaName: news.title
-          }
+            schemaName: news.title,
+          },
         ]}
       />
     </main>
@@ -199,7 +198,7 @@ const thumbnailAlt =
 </Layout>
 
 <style lang="scss">
-  @use '../../styles/breakpoints' as *;
+  @use "../../styles/breakpoints" as *;
 
   .single {
     padding-block-start: 40px;

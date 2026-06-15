@@ -28,21 +28,26 @@ import BreadCrumb from "../components/common/Breadcrumb.astro";
 
         <!-- contact-form -->
         <ContactForm />
-
       </div><!-- /.contact-content -->
 
       <!-- breadcrumb -->
       <BreadCrumb
         breadcrumbClass="l-container-s"
-        breadcrumbLists={[{ name: "お問い合わせ", path: "/contact", schemaName: "お問い合わせ" }]}
-        siteUrl="https://creative-basbousa-a8451a.netlify.app"
+        breadcrumbLists={[
+          {
+            name: "お問い合わせ",
+            path: "/contact",
+            schemaName: "お問い合わせ",
+          },
+        ]}
+        siteUrl="https://sunny-lollipop-044fb5.netlify.app/"
       />
     </main>
   </div><!-- /.contact -->
 </Layout>
 
 <style lang="scss">
-  @use '../styles/breakpoints' as *;
+  @use "../styles/breakpoints" as *;
 
   .contact-content {
     margin-block-start: 56px;
