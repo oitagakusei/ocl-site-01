@@ -11,13 +11,13 @@
       <div class="l-section-body">
         <div class="about-message-image">
           <img
-            src="/assets/images/about/pic-about-message@3x.webp"
+            src="/assets/images/about/pic-about-message@2x.webp"
             alt="Oita Campus Link代表理事 田北 ややこ"
             loading="eager"
             fetchpriority="high"
             decoding="async"
-            width="350"
-            height="230"
+            width="320"
+            height="320"
           />
         </div><!-- /.about-message-image -->
 
@@ -94,6 +94,15 @@
     text-align: center;
   }
 
+  .about-message-image {
+    text-align: center;
+
+    img {
+      max-width: 240px;
+      border-radius: 50%;
+    }
+  }
+
   .about-message-description {
     margin-block-start: 32px;
   }
@@ -116,10 +125,9 @@
 
   @include mq() {
     .about-message-image {
-      text-align: center;
-
       img {
-        max-width: 480px;
+        // max-width: 480px;
+        max-width: 320px;
       }
     }
 
