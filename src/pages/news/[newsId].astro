@@ -105,10 +105,10 @@ const thumbnailAlt =
 const newsJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Article",
-  "@id": `https://sunny-lollipop-044fb5.netlify.app//news/${news.id}#article`,
+  "@id": `https://oitacampuslink.com/news/${news.id}#article`,
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": `https://sunny-lollipop-044fb5.netlify.app//news/${news.id}`,
+    "@id": `https://oitacampuslink.com/news/${news.id}`,
   },
   headline: news.title,
   description: metaDescription,
@@ -124,12 +124,12 @@ const newsJsonLd = JSON.stringify({
     name: "Oita Campus Link",
     logo: {
       "@type": "ImageObject",
-      url: "https://sunny-lollipop-044fb5.netlify.app//assets/images/global/logo.png",
+      url: "https://oitacampuslink.com/assets/images/global/logo.png",
     },
   },
   isPartOf: {
     "@type": "WebSite",
-    "@id": "https://sunny-lollipop-044fb5.netlify.app//#website",
+    "@id": "https://oitacampuslink.com/#website",
   },
 });
 ---
@@ -182,7 +182,7 @@ const newsJsonLd = JSON.stringify({
 
       <BreadCrumb
         breadcrumbClass="l-container-s"
-        siteUrl="https://sunny-lollipop-044fb5.netlify.app/"
+        siteUrl="https://oitacampuslink.com/"
         breadcrumbLists={[
           { name: "お知らせ", path: "/news", schemaName: "お知らせ" },
           {

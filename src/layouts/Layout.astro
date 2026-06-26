@@ -5,13 +5,17 @@ import Footer from "../components/common/Footer.astro";
 
 const logo = "/assets/images/global/logo.png";
 const logoAlt = "Oita Campus Link";
+
+const siteUrl = Astro.site ?? new URL("https://oitacampuslink.com");
+const currentUrl = new URL(Astro.url.pathname, siteUrl).toString();
+
 const {
   title = "産学連携とは違う。学生が社会と共創する機会をつくるNPO｜Oita Campus Link",
   ogType = "website",
   ogTitle = title,
   description = "Oita Campus Linkは、学生自身が運営し意思決定するNPO法人です。従来の産学連携とは異なる形で学生と企業・自治体をつなぎ、対等な共創が生まれる機会をつくることを目的としています。",
   ogDescription = description,
-  ogImage = "https://sunny-lollipop-044fb5.netlify.app//ogp.png",
+  ogImage = "https://oitacampuslink.com/ogp.png",
   noIndex = false,
   jsonLd = "",
 } = Astro.props;
@@ -24,6 +28,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={currentUrl}>
 
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="robots" content="noindex, nofollow" />
@@ -35,10 +40,7 @@ const {
 
     <!-- ogp -->
     <meta property="og:site_name" content="NPO法人 Oita Campus Link" />
-    <meta
-      property="og:url"
-      content={`https://sunny-lollipop-044fb5.netlify.app/${Astro.url.pathname}`}
-    />
+    <meta property="og:url" content={currentUrl}>
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
@@ -84,9 +86,6 @@ const {
         href="https://cdn.jsdelivr.net/npm/destyle.css@4.0.0/destyle.min.css"
       /></noscript
     >
-
-    <!-- ヒーロー画像のpreload -->
-    <!-- <link rel="preload" as="image" href="/assets/images/top/bg-kv-sp@2x.webp" fetchpriority="high"> -->
 
     <!-- 構造化データ -->
     {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}

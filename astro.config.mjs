@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  // site: "https://sunny-lollipop-044fb5.netlify.app/",
+  // site: "https://oitacampuslink.com/",
   trailingSlash: "never",
   // integrations: [sitemap()],
 });
