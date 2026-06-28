@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://oitacampuslink.com/sitemap-index.xml
