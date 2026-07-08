@@ -141,6 +141,12 @@
     <p id="privacy-error" class="c-form-error c-form-error--privacy" aria-live="polite"></p>
   </div>
 
+  <!-- Cloudflare Turnstile -->
+  <div class="c-form-turnstile">
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAADxrzl3f9jE_hzKT"></div>
+  </div>
+
+  <!-- 送信ボタン -->
   <div class="c-form-submit">
     <button type="submit" class="c-submit-btn">送信する</button>
   </div>
@@ -507,9 +513,15 @@
     border-color: #c95858;
   }
 
+  // Cloudflare Turnstile
+  .c-form-turnstile {
+    margin-block: 8px 16px;
+    text-align: center;
+  }
+
   // 送信ボタン
   .c-form-submit {
-    margin-block-start: 8px;
+    margin-block-start: 24px;
     text-align: center;
   }
 
